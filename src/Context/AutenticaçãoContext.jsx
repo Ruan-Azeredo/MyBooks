@@ -7,11 +7,6 @@ export function AutenticaçãoProvider(props) {
 
     const [iduserglobal, setIduserglobal] = useState()
 
-    const idglobal = (id) => {
-        setIduserglobal(id)
-        console.log('id do usuario global: ', iduserglobal)
-    }
-
     return (
         <AuthContext.Provider value={{iduserglobal, setIduserglobal}}>{props.children}</AuthContext.Provider>
     )
