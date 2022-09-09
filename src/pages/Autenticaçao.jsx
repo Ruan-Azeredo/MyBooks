@@ -1,13 +1,14 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { getAuth } from 'firebase/auth'
 import Router from 'next/router'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import AuthContext from '../Context/AutenticaçãoContext'
 import app from '../Services/firebase'
 const axios = require('axios')
 
-export default function Autenticação() {
+export default function Autenticação(props) {
 
-    const [iduser, setIduser] = useState()
+    const { iduserglobal, setIduserglobal } = useContext(AuthContext)
 
     const [namevalue, setNamevalue] = useState()
     const [emailvalue, setEmailvalue] = useState()
@@ -23,7 +24,7 @@ export default function Autenticação() {
                 if (result.data == 'email não cadastrado') {
                     create(name, email, password, photoURL)
                 } else {
-                    setIduser(result.data[0].id)
+                    setIduserglobal(result.data[0].id)
                 }
             })
     }
@@ -35,7 +36,7 @@ export default function Autenticação() {
             password: uid,
             photo: photoURL
         }).then((result) => {
-            setIduser(result.data.id)
+            setIduserglobal(result.data.id)
         })
     }
 
@@ -53,7 +54,7 @@ export default function Autenticação() {
             console.log(error)
         })
     }
-    console.log('iduser: ', iduser)
+    console.log(iduserglobal)
 
     return (
         <>
