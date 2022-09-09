@@ -1,4 +1,5 @@
 import axios from "axios"
+import Router from "next/router"
 import { useContext, useEffect, useState } from "react"
 import AuthContext from "../../Context/AutenticaçãoContext"
 
@@ -8,9 +9,14 @@ export default function Insideindex() {
 
     const [writers, setWriters] = useState()
 
+
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/writers/${iduserglobal}`)
-        .then((result) => setWriters(result.data))
+        if (iduserglobal == null) {
+            Router.replace('/')
+        } else {
+            axios.get(`http://localhost:3001/users/writers/${iduserglobal}`)
+            .then((result) => setWriters(result.data))
+        }
     }, [])
 
     return (
