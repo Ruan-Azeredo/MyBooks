@@ -2,6 +2,7 @@ import axios from "axios"
 import Router from "next/router"
 import { useContext, useEffect, useState } from "react"
 import AuthContext from "../../Context/AutenticaçãoContext"
+import TrataWriter from "../../functions/TrataWriter"
 
 export default function Insideindex() {
 
@@ -24,23 +25,6 @@ export default function Insideindex() {
         }
     }, [])
 
-    //Tratamento de dados: pega o writer_id que vem de books, e o compara com os ids dos escritores para pegar o nome referente a eles, assim, passamos os ids dos escritores e retornamos os nomes do sescritores.
-    const func = (writer_id, y = 0, respss = null) => {
-    
-        if (writers[y].id == writer_id) {
-            respss = writers[y].name
-            console.log('resp:', respss)
-            return respss
-        }
-        
-        if (writers[y+1] != null) {
-            y = y +1
-            return func(writer_id, y, respss)
-        }
-
-
-    }
-
     return (
         <>
             <div>Ola usuario de id {iduserglobal}</div>
@@ -48,7 +32,7 @@ export default function Insideindex() {
                 <li key={resp.id}>
                     <div>{ resp.cover }</div>
                     <div>{resp.title}</div>
-                    <div>{func(resp.writer_id)}</div>
+                    <div>{TrataWriter(resp.writer_id, writers)}</div>
                 </li>
             ))}
         </>
