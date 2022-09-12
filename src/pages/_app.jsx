@@ -1,9 +1,13 @@
 import { AutenticaçãoProvider } from "../Context/AutenticaçãoContext"
+import { WritersProvider } from "../Context/WritersContext"
+
 
 function MyApp({ Component, pageProps }) {
   return (
     <AutenticaçãoProvider>
-      <Component {...pageProps} />
+      <WritersProvider>
+        <Component {...pageProps} />
+      </WritersProvider>
     </AutenticaçãoProvider>
   )
 }
