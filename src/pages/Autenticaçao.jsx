@@ -8,7 +8,10 @@ const axios = require('axios')
 
 export default function Autenticação(props) {
 
-    const { iduserglobal, setIduserglobal } = useContext(AuthContext)
+    const {
+        iduserglobal, setIduserglobal,
+        photoglobal, setPhotoglobal
+    } = useContext(AuthContext)
 
     const [namevalue, setNamevalue] = useState()
     const [emailvalue, setEmailvalue] = useState()
@@ -25,6 +28,7 @@ export default function Autenticação(props) {
                     create(name, email, password, photoURL)
                 } else {
                     setIduserglobal(result.data[0].id)
+                    setPhotoglobal(result.data[0].photoURL)
                     Router.push('/Inside/Insideindex')
                 }
             })
@@ -38,6 +42,7 @@ export default function Autenticação(props) {
             photo: photoURL
         }).then((result) => {
             setIduserglobal(result.data.id)
+            setPhotoglobal(result.data.photoURL)
             Router.push('/Inside/Insideindex')
         })
     }
@@ -56,7 +61,6 @@ export default function Autenticação(props) {
             console.log(error)
         })
     }
-    console.log(iduserglobal)
 
     return (
         <>
