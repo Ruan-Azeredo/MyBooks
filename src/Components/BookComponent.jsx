@@ -1,6 +1,7 @@
 import TrataWriter from '../functions/TrataWriter'
 
-export default function BookComponent(resp) {
+export default function BookComponent(props) {
+    const resp = props.resp
     return (
         <div>
             <img src={resp.cover} />
