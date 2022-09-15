@@ -28,7 +28,7 @@ export default function Autenticação(props) {
                     create(name, email, password, photoURL)
                 } else {
                     setIduserglobal(result.data[0].id)
-                    setPhotoglobal(result.data[0].photoURL)
+                    setPhotoglobal(result.data[0].photo)
                     Router.push('/Inside/Insideindex')
                 }
             })
@@ -42,7 +42,7 @@ export default function Autenticação(props) {
             photo: photoURL
         }).then((result) => {
             setIduserglobal(result.data.id)
-            setPhotoglobal(result.data.photoURL)
+            setPhotoglobal(result.data.photo)
             Router.push('/Inside/Insideindex')
         })
     }
