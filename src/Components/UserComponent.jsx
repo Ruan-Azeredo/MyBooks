@@ -2,9 +2,9 @@ import { useContext } from "react"
 import AuthContext from "../Context/AutenticaçãoContext"
 
 export default function UserComponent() {
-    const { photoglobal } = useContext(AuthContext)
+    const { photoglobal, nameglobal } = useContext(AuthContext)
     const nomeCompleto = 'Ruan Azeredo dos Santos Gomes'
-    const nome = nomeCompleto.split(" ")[0] //Pega só o primeiro nome
+    const nome = nameglobal.split(" ")[0] //Pega só o primeiro nome
     return (
         <div className={`
         w-[180px] h-60  col-start-1 col-end-2 rounded-r-[40px]
