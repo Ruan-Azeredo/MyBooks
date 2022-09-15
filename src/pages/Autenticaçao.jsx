@@ -10,7 +10,8 @@ export default function Autenticação(props) {
 
     const {
         iduserglobal, setIduserglobal,
-        photoglobal, setPhotoglobal
+        photoglobal, setPhotoglobal,
+        nameglobal, setNameglobal
     } = useContext(AuthContext)
 
     const [namevalue, setNamevalue] = useState()
@@ -29,6 +30,7 @@ export default function Autenticação(props) {
                 } else {
                     setIduserglobal(result.data[0].id)
                     setPhotoglobal(result.data[0].photo)
+                    setNameglobal(result.data[0].name)
                     Router.push('/Inside/Insideindex')
                 }
             })
@@ -43,6 +45,7 @@ export default function Autenticação(props) {
         }).then((result) => {
             setIduserglobal(result.data.id)
             setPhotoglobal(result.data.photo)
+            setNameglobal(result.data.name)
             Router.push('/Inside/Insideindex')
         })
     }
