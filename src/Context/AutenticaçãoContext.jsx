@@ -7,13 +7,16 @@ export function AutenticaçãoProvider(props) {
 
     const [iduserglobal, setIduserglobal] = useState()
     const [photoglobal, setPhotoglobal] = useState()
+    const [nameglobal, setNameglobal] = useState()
 
     return (
         <AuthContext.Provider value={{
             iduserglobal,
             setIduserglobal,
             photoglobal,
-            setPhotoglobal
+            setPhotoglobal,
+            nameglobal,
+            setNameglobal
         }}>{props.children}</AuthContext.Provider>
     )
 }
