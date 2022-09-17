@@ -1,4 +1,4 @@
-import OpcoesComponent from "./OpcoesComponet";
+import OptionsComponent from "./OptionsComponent";
 
 export default function SidebarComponent() {
     return (
@@ -8,10 +8,10 @@ export default function SidebarComponent() {
                 bg-gradient-to-br from-neutral-200 via-neutral-50 to-neutral-50 sombra
                 
             `}>
-                <OpcoesComponent value='+ Autor'></OpcoesComponent>
-                <OpcoesComponent value='+ Livro'></OpcoesComponent>
-                <OpcoesComponent value='Resenhas & Autores'></OpcoesComponent>
-                <OpcoesComponent value='Logout'></OpcoesComponent>
+                <OptionsComponent value='+ Autor'></OptionsComponent>
+                <OptionsComponent value='+ Livro'></OptionsComponent>
+                <OptionsComponent value='Resenhas & Autores'></OptionsComponent>
+                <OptionsComponent value='Logout'></OptionsComponent>
             </div>
         </div>
     )
