@@ -53,13 +53,13 @@ export default function Insideindex() {
         <div className={`grid grid-cols-6`}>
             <div>Ola usuario de id {iduserglobal}</div>
             <UserComponent />
-            <SidebarComponent />
             <ReviewContentIndex>
                 {reviews?.map(resp => (
                     renderizaReview(resp)
                 ))}
                 <SeeMoreComponent/>
             </ReviewContentIndex>
+            <SidebarComponent />
             <BookContent>
                 {booksglobal?.map(resp => (
                     <div key={resp.id}>    
