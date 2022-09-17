@@ -1,4 +1,5 @@
 import { AutenticaçãoProvider } from "../Context/AutenticaçãoContext"
+import { BooksProvider } from "../Context/BooksContext"
 import { WritersProvider } from "../Context/WritersContext"
 import "../styles/globals.css"
 
@@ -7,7 +8,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <AutenticaçãoProvider>
       <WritersProvider>
-        <Component {...pageProps} />
+        <BooksProvider>
+          <Component {...pageProps} />
+        </BooksProvider>
       </WritersProvider>
     </AutenticaçãoProvider>
   )
