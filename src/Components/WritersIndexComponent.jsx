@@ -41,17 +41,27 @@ export default function WritersIndexComponent() {
             
             arrayFinal.push([escritor, quantidade])
         })
-        
+
         return arrayFinal
     }
+
+    const listaEscritoresLidos =  moreReaded( )
 
     return (
         <div className="">
             <div className={`
             bg-gradient-to-bl from-gray-100 via-amber-100 to-gray-100 rounded-l-[40px]
-            h-[370px] mt-12 font-semibold text-center mx-auto pt-4
+            h-[370px] mt-12 font-semibold text-center mx-auto pt-4 text-xl
             `}>Autores mais lidos
-                <div>{ moreReaded( )}</div>
+                <div>{listaEscritoresLidos.map(key => (
+                    <div key={key.id} className={`
+                    font-medium text-base text-start px-7 pt-6
+                    `}>{key[0]}
+                        <div className={`
+                            font-normal
+                        `}>{key[1]} Livros</div>
+                    </div>
+                ))}</div>
             </div>
         </div>
     )
