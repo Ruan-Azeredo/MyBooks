@@ -6,6 +6,7 @@ import ReviewsComponentIndex from "../../components/ReviewComponentIndex"
 import SeeMoreComponent from "../../components/SeeMoreComponent"
 import SidebarComponent from "../../components/SidebarComponent"
 import UserComponent from "../../components/UserComponent"
+import WritersIndexComponent from "../../components/WritersIndexComponent"
 import BookContent from "../../content/BookContent"
 import ReviewContentIndex from "../../content/ReviewContentIndex"
 import AuthContext from "../../Context/AutenticaçãoContext"
@@ -67,6 +68,7 @@ export default function Insideindex() {
                     </div>
                 ))}
             </BookContent>
+            <WritersIndexComponent/>
         </div>
     )
     
