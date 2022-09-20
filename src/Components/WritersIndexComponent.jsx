@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import BooksContext from "../Context/BooksContext"
-import WritersContext from "../Context/WritersContext"
 import TrataWriter from "../functions/TrataWriter"
 
 export default function WritersIndexComponent() {
@@ -45,7 +44,25 @@ export default function WritersIndexComponent() {
         return arrayFinal
     }
 
-    const listaEscritoresLidos =  moreReaded( )
+    const ordenaMaisLidos = (listaEscritoresLidos) => {
+        const k = 0
+        listaEscritoresLidos.map(key => {
+            console.log('key: ', key)
+            if (listaEscritoresLidos[k + 1] != undefined) {
+                console.log('listaEsLi: ', listaEscritoresLidos[k + 1])
+                if (key[1] < listaEscritoresLidos[k + 1][1]) {
+                    const listaAux = listaEscritoresLidos[k]
+                    listaEscritoresLidos[k] = listaEscritoresLidos[k + 1]
+                    listaEscritoresLidos[k + 1] = listaAux
+                }
+            }
+            k++
+        })
+        console.log('lista Final: ',listaEscritoresLidos)
+    }
+    
+    const listaEscritoresLidos = moreReaded()
+    ordenaMaisLidos(listaEscritoresLidos)
 
     return (
         <div className="">
