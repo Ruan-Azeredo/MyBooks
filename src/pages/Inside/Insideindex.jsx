@@ -50,6 +50,23 @@ export default function Insideindex() {
         }
     }
 
+    const arrayBooks = booksglobal
+    const ordenaAdicionadosRecentes = (arrayBooks) => {
+        const k = 0
+        arrayBooks?.map(key => {
+            if (arrayBooks[k + 1] != undefined) {
+                console.log('arrayBooks: ', arrayBooks[k].createdAt)
+                if (key.createdAt < arrayBooks[k + 1].createdAt) {
+                    const listAux = arrayBooks[k]
+                    arrayBooks[k] = arrayBooks[k + 1]
+                    arrayBooks[k + 1] = listAux
+                    ordenaAdicionadosRecentes(arrayBooks)
+                }
+            }
+            k++
+        })
+    }
+    ordenaAdicionadosRecentes(arrayBooks)
     return (
         <div className={`grid grid-cols-6`}>
             <div>Ola usuario de id {iduserglobal}</div>
@@ -62,7 +79,7 @@ export default function Insideindex() {
             </ReviewContentIndex>
             <SidebarComponent />
             <BookContent>
-                {booksglobal?.map(resp => (
+                {arrayBooks?.map(resp => (
                     <div key={resp.id}>    
                         <BookComponent resp={resp} />
                     </div>
