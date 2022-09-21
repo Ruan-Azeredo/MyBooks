@@ -12,6 +12,7 @@ import ReviewContentIndex from "../../content/ReviewContentIndex"
 import AuthContext from "../../Context/AutenticaçãoContext"
 import BooksContext from "../../Context/BooksContext"
 import WritersContext from "../../Context/WritersContext"
+import ordenaAdicionadosRecentes from "../../functions/OrdenaAdicionadosRecentes"
 
 export default function Insideindex() {
 
@@ -40,6 +41,9 @@ export default function Insideindex() {
         }
     }, [])
 
+    const arrayBooks = booksglobal
+    ordenaAdicionadosRecentes(arrayBooks)
+    
     const renderizaReview = (resp) => {
         if(resp.id <= 2){
             return (
@@ -50,23 +54,6 @@ export default function Insideindex() {
         }
     }
 
-    const arrayBooks = booksglobal
-    const ordenaAdicionadosRecentes = (arrayBooks) => {
-        const k = 0
-        arrayBooks?.map(key => {
-            if (arrayBooks[k + 1] != undefined) {
-                console.log('arrayBooks: ', arrayBooks[k].createdAt)
-                if (key.createdAt < arrayBooks[k + 1].createdAt) {
-                    const listAux = arrayBooks[k]
-                    arrayBooks[k] = arrayBooks[k + 1]
-                    arrayBooks[k + 1] = listAux
-                    ordenaAdicionadosRecentes(arrayBooks)
-                }
-            }
-            k++
-        })
-    }
-    ordenaAdicionadosRecentes(arrayBooks)
     return (
         <div className={`grid grid-cols-6`}>
             <div>Ola usuario de id {iduserglobal}</div>
