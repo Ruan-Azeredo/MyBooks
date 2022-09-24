@@ -1,5 +1,6 @@
 import { AutenticaçãoProvider } from "../Context/AutenticaçãoContext"
 import { BooksProvider } from "../Context/BooksContext"
+import { DarkModeProvider } from "../Context/DarkModeContext"
 import { WritersProvider } from "../Context/WritersContext"
 import "../styles/globals.css"
 
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
     <AutenticaçãoProvider>
       <WritersProvider>
         <BooksProvider>
-          <Component {...pageProps} />
+          <DarkModeProvider>
+            <Component {...pageProps} />
+          </DarkModeProvider>
         </BooksProvider>
       </WritersProvider>
     </AutenticaçãoProvider>
