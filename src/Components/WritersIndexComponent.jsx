@@ -47,18 +47,16 @@ export default function WritersIndexComponent() {
     const ordenaMaisLidos = (listaEscritoresLidos) => {
         const k = 0
         listaEscritoresLidos.map(key => {
-            console.log('key: ', key)
             if (listaEscritoresLidos[k + 1] != undefined) {
-                console.log('listaEsLi: ', listaEscritoresLidos[k + 1])
                 if (key[1] < listaEscritoresLidos[k + 1][1]) {
                     const listaAux = listaEscritoresLidos[k]
                     listaEscritoresLidos[k] = listaEscritoresLidos[k + 1]
                     listaEscritoresLidos[k + 1] = listaAux
+                    ordenaMaisLidos(listaEscritoresLidos)
                 }
             }
             k++
         })
-        console.log('lista Final: ',listaEscritoresLidos)
     }
     
     const listaEscritoresLidos = moreReaded()
