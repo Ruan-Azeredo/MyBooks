@@ -2,6 +2,7 @@ import axios from "axios"
 import Router from "next/router"
 import { useContext, useEffect, useState } from "react"
 import BookComponent from "../../components/BookComponent"
+import HeaderComponent from "../../components/HeaderComponent"
 import ReviewsComponentIndex from "../../components/ReviewComponentIndex"
 import SeeMoreComponent from "../../components/SeeMoreComponent"
 import SidebarComponent from "../../components/SidebarComponent"
@@ -11,6 +12,7 @@ import BookContent from "../../content/BookContent"
 import ReviewContentIndex from "../../content/ReviewContentIndex"
 import AuthContext from "../../Context/AutenticaçãoContext"
 import BooksContext from "../../Context/BooksContext"
+import DarkModeContext from "../../Context/DarkModeContext"
 import WritersContext from "../../Context/WritersContext"
 import ordenaAdicionadosRecentes from "../../functions/OrdenaAdicionadosRecentes"
 
@@ -20,6 +22,8 @@ export default function Insideindex() {
     const iduserglobal = 2
     const { setWritersglobal } = useContext(WritersContext)
     const { booksglobal, setBooksglobal } = useContext(BooksContext)
+
+    const {tema} = useContext(DarkModeContext)
 
     const [books, setBooks] = useState()
     const [writers, setWriters] = useState()
@@ -55,8 +59,8 @@ export default function Insideindex() {
     }
 
     return (
-        <div className={`grid grid-cols-6`}>
-            <div>Ola usuario de id {iduserglobal}</div>
+        <div className={`grid grid-cols-6 ${tema}`}>
+            <HeaderComponent/>
             <UserComponent />
             <ReviewContentIndex>
                 {reviews?.map(resp => (
