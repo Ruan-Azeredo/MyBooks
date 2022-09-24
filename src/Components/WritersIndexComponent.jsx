@@ -76,7 +76,7 @@ export default function WritersIndexComponent() {
         <div className="">
             <div className={`
             bg-gradient-to-bl from-gray-100 via-amber-100 to-gray-100 rounded-l-[40px]
-            h-[370px] mt-12 font-semibold text-center mx-auto pt-4 text-xl
+            mt-12 font-semibold text-center mx-auto pt-4 text-xl pb-5
             `}>Autores mais lidos
                 <div>
                     {listaEscritoresLidos.map((key, indice) => (
