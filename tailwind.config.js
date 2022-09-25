@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         mainColor: '#F1DBA1',
         deleteColor: '#FFAD93',
+        brancoTransparencia: 'rgb(255, 255, 255, 0.8)',
       }
     },
   },
