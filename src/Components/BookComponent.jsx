@@ -1,8 +1,11 @@
 import limitText from '../functions/limitText'
 import TrataWriter from '../functions/TrataWriter'
+import BookModalComponent from './BookModalComponent'
 
 export default function BookComponent(props) {
     const resp = props.resp
+
+    const infos = {id: resp.id, title: resp.title, cover: resp.cover}
 
     return (
         <div className={`mb-4`}>
@@ -15,8 +18,8 @@ export default function BookComponent(props) {
                 <div className={`text-xs mb-4`}>{TrataWriter(resp.writer_id)}</div>
             </div>
             <div className={`flex flex-row justify-center content-center w-40`}>
-                <button className={`py-[2px] px-2 mx-1 rounded-full font-normal text-base bg-mainColor`}>Update</button>
-                <button className={`py-[2px] px-2 mx-1 rounded-full font-normal text-base bg-deleteColor`}>Delete</button>
+                <BookModalComponent value='Update' color='mainColor' infos={infos} />
+                <BookModalComponent value='Delete' color='deleteColor' infos={infos} />
             </div>
         </div>
     )
