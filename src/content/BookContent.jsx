@@ -1,4 +1,4 @@
-export default function (props) {
+export default function BookContent(props) {
     return (
         <div className={`w-full flex col-start-2 col-end-6 mt-6`}>
             <div className={`w-full text-xl font-bold`}>Livros

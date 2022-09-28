@@ -43,7 +43,7 @@ export default function Insideindex() {
             axios.get(`http://localhost:3001/users/reviews/${iduserglobal}`)
             .then((result) => setReviews(result.data))
         }
-    }, [])
+    }, [setBooksglobal, setWritersglobal])
 
     const arrayBooks = booksglobal
     ordenaAdicionadosRecentes(arrayBooks)
