@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import BooksContext from "../Context/BooksContext"
 import TrataWriter from "../functions/TrataWriter"
 
@@ -12,7 +12,7 @@ export default function WritersIndexComponent() {
         const arrayFinal = []
 
         const percorreLivros = (book_id, y = 0, resp = null) => {
-            if (booksglobal[y].id == book_id) {
+            if (booksglobal[y].id === book_id) {
                 resp = booksglobal[y].writer_id
                 return resp
             }
@@ -36,7 +36,7 @@ export default function WritersIndexComponent() {
         })
         
         arrayEscritores?.map(escritor => {
-            const quantidade = arrayCompleto.filter(x => x == escritor).length
+            const quantidade = arrayCompleto.filter(x => x === escritor).length
             
             arrayFinal.push([escritor, quantidade])
         })
@@ -45,9 +45,9 @@ export default function WritersIndexComponent() {
     }
 
     const ordenaMaisLidos = (listaEscritoresLidos) => {
-        const k = 0
+        let k = 0
         listaEscritoresLidos.map(key => {
-            if (listaEscritoresLidos[k + 1] != undefined) {
+            if (listaEscritoresLidos[k + 1] !== undefined) {
                 if (key[1] < listaEscritoresLidos[k + 1][1]) {
                     const listaAux = listaEscritoresLidos[k]
                     listaEscritoresLidos[k] = listaEscritoresLidos[k + 1]
