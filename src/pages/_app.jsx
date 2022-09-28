@@ -4,7 +4,6 @@ import { DarkModeProvider } from "../Context/DarkModeContext"
 import { WritersProvider } from "../Context/WritersContext"
 import "../styles/globals.css"
 
-
 function MyApp({ Component, pageProps }) {
   return (
     <AutenticaçãoProvider>
