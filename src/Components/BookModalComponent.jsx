@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
+import BookDelete from '../functions/BookDelete';
 import BookUpdate from '../functions/BookUpdate';
 import { customStyles } from '../Package/Modal/customStyles';
 
@@ -18,6 +19,7 @@ export default function BookModalComponent(props) {
         console.log(cover)
     }
     const variavel = cover
+    
     return (
         <div className=''>
             <button onClick={openModal} className={`py-[2px] mx-1 px-2 rounded-full font-normal text-base bg-${props.color}`}>{props.value}</button>
@@ -27,15 +29,30 @@ export default function BookModalComponent(props) {
                 style={customStyles}
                 contentLabel="Example Modal">
                 
-                <h2>Hello</h2>
-                <button onClick={closeModal}>close</button>
-                <div>I am a modal</div>
-                <form>
-                    <input type="text" placeholder='Titulo' defaultValue={props.infos?.title} onChange={getTitle}/>
-                    <input type="file" placeholder='capa' onChange={getCover} />
-                    <img src={variavel} className={`h-40`} />
-                    <button onClick={() => BookUpdate(props.infos.id, title, cover)}>Atualize um livro</button>
-                </form>
+                {props.value == 'Update' ? (
+                    <>
+                        <h2>Hello</h2>
+                        <button onClick={closeModal}>close</button>
+                        <div>UPDATE</div>
+                        <form>
+                            <input type="text" placeholder='Titulo' defaultValue={props.infos?.title} onChange={getTitle}/>
+                            <input type="file" placeholder='capa' onChange={getCover} />
+                            <img src={variavel} className={`h-40`} />
+                            <button onClick={() => BookUpdate(props.infos.id, title, cover)}>Atualize um livro</button>
+                        </form>
+                    </>
+
+                ) : (
+                    <>
+                        <h2>Hello</h2>
+                        <button onClick={closeModal}>close</button>
+                        <div>DELETE</div>
+                        <form>
+                            <button onClick={() => BookDelete(props.infos.id)}>Apague um livro</button>
+                        </form>
+                    </>
+                )
+                }
             </Modal>
         </div>
   );
