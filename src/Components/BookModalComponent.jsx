@@ -25,38 +25,38 @@ export default function BookModalComponent(props) {
 
 
 
-    let base64String = "";
+    // let base64String = "";
   
-    function imageUploaded() {
-        var file = document.querySelector(
-            'input[type=file]')['files'][0];
+    // function imageUploaded() {
+    //     var file = document.querySelector(
+    //         'input[type=file]')['files'][0];
     
-        var reader = new FileReader();
-        console.log("next");
+    //     var reader = new FileReader();
+    //     console.log("next");
         
-        reader.onload = function () {
-            base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+    //     reader.onload = function () {
+    //         base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
     
-            const imageBase64Stringsep = base64String;
+    //         const imageBase64Stringsep = base64String;
     
-            alert(imageBase64Stringsep);
-            console.log(base64String);
-            setString(btoa)
-        }
-        reader.readAsDataURL(file);
-        console.log('string:',string)
-    }
+    //         alert(imageBase64Stringsep);
+    //         console.log(base64String);
+    //         setString(btoa)
+    //     }
+    //     reader.readAsDataURL(file);
+    //     console.log('string:',string)
+    // }
     
     
-    function stringConversor() {
-        console.log('string:',atob(string))
-    }
+    // function stringConversor() {
+    //     console.log('string:',atob(string))
+    // }
     
-    function displayString() {
-        console.log("Base64String about to be printed");
-        alert(base64String);
-        console.log('string:',string)
-    }
+    // function displayString() {
+    //     console.log("Base64String about to be printed");
+    //     alert(base64String);
+    //     console.log('string:',string)
+    // }
 
 
     const variavel = cover
@@ -85,8 +85,8 @@ export default function BookModalComponent(props) {
                                     <input type="text" placeholder='Autor' className={`flex bg-mainColor rounded-md w-72 h-10 pl-2`}/>
                                 </div>
                                 <div className={`bg-mainColor rounded-md p-2 pb-4`}>
-                                    <input type="file" placeholder='capa' onChange={()=>imageUploaded()} className={`file:text-amber-300 file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
-                                    <Image alt="variavel" src={variavel} className={`h-48 w-32 rounded-2xl mx-auto`} />
+                                    <input type="file" placeholder='capa' onChange={()=>getCover()} className={`file:text-amber-300 file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
+                                    <img alt="variavel" layout='fill' src={variavel} className={`h-48 w-32 rounded-2xl mx-auto`} />
                                 </div>
                             </div>
                             <button onClick={() => BookUpdate(props.infos.id, title, cover)}>Atualize um livro</button>
