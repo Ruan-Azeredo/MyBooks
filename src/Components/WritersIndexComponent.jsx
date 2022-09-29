@@ -1,10 +1,12 @@
 import { useContext } from "react"
 import BooksContext from "../Context/BooksContext"
+import WritersContext from "../Context/WritersContext"
 import TrataWriter from "../functions/TrataWriter"
 
 export default function WritersIndexComponent() {
 
     const { booksglobal } = useContext(BooksContext)
+    const { writersglobal } = useContext(WritersContext)
 
     const moreReaded = () => {
         const arrayEscritores = []
@@ -26,7 +28,7 @@ export default function WritersIndexComponent() {
             const book_id = livro.id
         
             const writer_id = percorreLivros(book_id)
-            const writer_name = TrataWriter(writer_id)
+            const writer_name = TrataWriter(writer_id, writersglobal)
 
             arrayCompleto.push(writer_name)
             
@@ -80,7 +82,9 @@ export default function WritersIndexComponent() {
             `}>Autores mais lidos
                 <div>
                     {listaEscritoresLidos.map((key, indice) => (
-                        limitaNEscritores(key, indice)
+                        <div key={key}>
+                            {limitaNEscritores(key, indice)}
+                        </div>  
                     ))}
                 </div>
             </div>

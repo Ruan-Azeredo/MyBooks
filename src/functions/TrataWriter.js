@@ -2,9 +2,7 @@ import { useContext } from "react"
 import WritersContext from "../Context/WritersContext"
 
 //Tratamento de dados: pega o writer_id que vem de books, e o compara com os ids dos escritores para pegar o nome referente a eles, assim, passamos os ids dos escritores e retornamos os nomes do sescritores.
-const TrataWriter = (writer_id, y = 0, respss = null) => {
-
-    const { writersglobal } = useContext(WritersContext)
+const TrataWriter = (writer_id, writersglobal, y = 0, respss = null) => {
 
     const writers = writersglobal
 
@@ -15,7 +13,7 @@ const TrataWriter = (writer_id, y = 0, respss = null) => {
     
     if (writers[y+1] != null) {
         y = y +1
-        return TrataWriter(writer_id, y, respss)
+        return TrataWriter(writer_id, writersglobal, y, respss)
     }
 }
 
