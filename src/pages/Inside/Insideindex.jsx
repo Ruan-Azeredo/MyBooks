@@ -59,24 +59,27 @@ export default function Insideindex() {
     }
 
     return (
-        <div className={`grid grid-cols-6 ${tema}`}>
-            <HeaderComponent/>
-            <UserComponent />
-            <ReviewContentIndex>
-                {reviews?.map(resp => (
-                    renderizaReview(resp)
-                ))}
-                <SeeMoreComponent/>
-            </ReviewContentIndex>
-            <SidebarComponent />
-            <BookContent>
-                {arrayBooks?.map(resp => (
-                    <div key={resp.id}>    
-                        <BookComponent resp={resp} />
-                    </div>
-                ))}
-            </BookContent>
-            <WritersIndexComponent/>
+        <div className={`${tema}`}>
+
+            <div className={`grid grid-cols-6 bg-white dark:bg-[#464646] text-[#464646] dark:text-white`}>
+                <HeaderComponent/>
+                <UserComponent />
+                <ReviewContentIndex>
+                    {reviews?.map(resp => (
+                        renderizaReview(resp)
+                    ))}
+                    <SeeMoreComponent/>
+                </ReviewContentIndex>
+                <SidebarComponent />
+                <BookContent>
+                    {arrayBooks?.map(resp => (
+                        <div key={resp.id}>    
+                            <BookComponent resp={resp} />
+                        </div>
+                    ))}
+                </BookContent>
+                <WritersIndexComponent/>
+            </div>
         </div>
     )
     
