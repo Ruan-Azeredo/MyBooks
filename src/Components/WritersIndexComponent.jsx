@@ -1,74 +1,34 @@
 import { useContext } from "react"
-import BooksContext from "../Context/BooksContext"
-import WritersContext from "../Context/WritersContext"
-import TrataWriter from "../functions/TrataWriter"
+import DataContext from "../Context/DataContext"
 
 export default function WritersIndexComponent() {
 
-    const { booksglobal } = useContext(BooksContext)
-    const { writersglobal } = useContext(WritersContext)
+    const {data} = useContext(DataContext)
 
-    const moreReaded = () => {
-        const arrayEscritores = []
-        const arrayCompleto = []
-        const arrayFinal = []
-
-        const percorreLivros = (book_id, y = 0, resp = null) => {
-            if (booksglobal[y].id === book_id) {
-                resp = booksglobal[y].writer_id
-                return resp
-            }
-            if (booksglobal[y + 1] != null) {
-                y = y + 1
-                return percorreLivros(book_id, y, resp)
-            }
-        }
-
-        booksglobal?.map(livro => {
-            const book_id = livro.id
-        
-            const writer_id = percorreLivros(book_id)
-            const writer_name = TrataWriter(writer_id, writersglobal)
-
-            arrayCompleto.push(writer_name)
-            
-            if (!arrayEscritores.includes(writer_name)) {
-                arrayEscritores.push(writer_name)
-            }
-        })
-        
-        arrayEscritores?.map(escritor => {
-            const quantidade = arrayCompleto.filter(x => x === escritor).length
-            
-            arrayFinal.push([escritor, quantidade])
-        })
-
-        return arrayFinal
-    }
-
-    const ordenaMaisLidos = (listaEscritoresLidos) => {
+    const ordenaMaisLidos = (data) => {
         let k = 0
-        listaEscritoresLidos.map(key => {
-            if (listaEscritoresLidos[k + 1] !== undefined) {
-                if (key[1] < listaEscritoresLidos[k + 1][1]) {
-                    const listaAux = listaEscritoresLidos[k]
-                    listaEscritoresLidos[k] = listaEscritoresLidos[k + 1]
-                    listaEscritoresLidos[k + 1] = listaAux
-                    ordenaMaisLidos(listaEscritoresLidos)
+        data.map(key => {
+            if (data[k + 1] !== undefined) {
+                if (key.quantidade < data[k + 1].quantidade) {
+                    const listaAux = data[k]
+                    data[k] = data[k + 1]
+                    data[k + 1] = listaAux
+                    ordenaMaisLidos(data)
                 }
             }
             k++
         })
     }
-    
-    const listaEscritoresLidos = moreReaded()
-    ordenaMaisLidos(listaEscritoresLidos)
+
+    ordenaMaisLidos(data)
+    console.log('data:',data)
 
     const limitaNEscritores = (key, indice) => {
         if (indice <= 3) {
+            console.log('key', key)
             return ( 
-                <div key={key.id} className={`font-medium text-base text-start px-7 pt-6`}>{key[0]}
-                    <div className={`font-normal`}>{key[1]} Livros</div>
+                <div key={key.id} className={`font-medium text-base text-start px-7 pt-6`}>{key.escritor}
+                    <div className={`font-normal`}>{key.quantidade} Livros</div>
                 </div>
             )
         }
@@ -81,7 +41,7 @@ export default function WritersIndexComponent() {
             mt-12 font-semibold text-center mx-auto pt-4 text-xl pb-5 sticky top-32
             `}>Autores mais lidos
                 <div>
-                    {listaEscritoresLidos.map((key, indice) => (
+                    {data.map((key, indice) => (
                         <div key={key}>
                             {limitaNEscritores(key, indice)}
                         </div>  
