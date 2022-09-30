@@ -10,6 +10,7 @@ export default function BookModalComponent(props) {
 
     const {data} = useContext(DataContext)
 
+    //modal
     const [modalIsOpen, setIsOpen] = useState(false);
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
@@ -18,16 +19,13 @@ export default function BookModalComponent(props) {
     const [cover, setCover] = useState()
     const [writer, setWriter] = useState()
 
-    const [string, setString] = useState()
 
     const getTitle = () => setTitle(event.target.value)
     const getCover = () => {
         setCover(URL.createObjectURL(event.target.files[0]))
-        console.log('cover:',cover)
     }
     const getWriter = () => {
         setWriter(event.target.value)
-        console.log('writer:',writer)
     }
     const chamaUpdate = (id, title, writer, cover, createdAt) => {
         const t = title
@@ -85,7 +83,7 @@ export default function BookModalComponent(props) {
     const variavel = cover
     
     return (
-        <div className=''>
+        <div>
             <button onClick={openModal} className={`py-[2px] mx-1 px-2 rounded-full font-normal text-base bg-${props.color}`}>{props.value}</button>
             <Modal
                 isOpen={modalIsOpen}
@@ -110,10 +108,8 @@ export default function BookModalComponent(props) {
                                      <label>Autor</label>                   
                                     <select type="text" placeholder='Autor' onChange={()=>getWriter()} className={`flex bg-mainColor rounded-md w-72 h-10 pl-2`}>
                                     {data.map(key => (
-                                        <>
-                                            <option value={key.writer_id} key={key} selected={key.writer_id == props.infos.writer_id ? true : false} className={``}>{key.escritor}</option>
-                                            </>
-                                        ))}
+                                        <option value={key.writer_id} key={key} selected={key.writer_id == props.infos.writer_id ? true : false}>{key.escritor}</option>
+                                    ))}
                                     </select>
                                     
                                 </div>
