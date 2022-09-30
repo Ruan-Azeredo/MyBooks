@@ -137,7 +137,7 @@ export default function BookModalComponent(props) {
                     </div>
                     <form>
                         <div className={` mr-5`}>
-                                <div type="text" className={`flex text-xl bg-mainColor w-80 rounded-xl p-5 mb-10 `}>Tem certeza que deseja deletar este livro?</div>
+                                <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 `}>Tem certeza que deseja deletar este livro?</div>
                         </div>
                         <button onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
                     </form>
