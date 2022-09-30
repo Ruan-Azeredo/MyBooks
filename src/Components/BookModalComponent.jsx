@@ -95,7 +95,7 @@ export default function BookModalComponent(props) {
                     <div className={`mx-5`}>
 
                         <div className={`w-full flex flex-row pb-5`}>
-                            <div>UPDATE</div>
+                            <div className="w-full">ATUALIZAR LIVRO</div>
                             <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                         </div>
                         <form>
@@ -130,14 +130,18 @@ export default function BookModalComponent(props) {
                     </div>
 
                 ) : (
-                    <>
-                        <h2>Hello</h2>
-                        <button onClick={closeModal}>close</button>
-                        <div>DELETE</div>
-                        <form>
-                            <button onClick={() => BookDelete(props.infos.id)}>Apague um livro</button>
-                        </form>
-                    </>
+                    <div className={`mx-5`}>
+                    <div className={`w-full flex flex-row pb-5`}>
+                        <div className="w-full">DELETAR LIVRO</div>
+                        <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
+                    </div>
+                    <form>
+                        <div className={` mr-5`}>
+                                <div type="text" className={`flex text-xl bg-mainColor w-80 rounded-xl p-5 mb-10 `}>Tem certeza que deseja deletar este livro?</div>
+                        </div>
+                        <button onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
+                    </form>
+                </div>
                 )
                 }
             </Modal>
