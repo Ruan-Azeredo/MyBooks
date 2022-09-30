@@ -1,11 +1,14 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Modal from 'react-modal';
+import DataContext from '../Context/DataContext';
 import BookDelete from '../functions/BookDelete';
 import BookUpdate from '../functions/BookUpdate';
 import { customStyles } from '../Package/Modal/customStyles';
 
 export default function BookModalComponent(props) {
+
+    const {data} = useContext(DataContext)
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const openModal = () => setIsOpen(true);
@@ -13,6 +16,7 @@ export default function BookModalComponent(props) {
 
     const [title, setTitle] = useState()
     const [cover, setCover] = useState()
+    const [writer, setWriter] = useState()
 
     const [string, setString] = useState()
 
@@ -20,6 +24,26 @@ export default function BookModalComponent(props) {
     const getCover = () => {
         setCover(URL.createObjectURL(event.target.files[0]))
         console.log('cover:',cover)
+    }
+    const getWriter = () => {
+        setWriter(event.target.value)
+        console.log('writer:',writer)
+    }
+    const chamaUpdate = (id, title, writer, cover, createdAt) => {
+        const t = title
+        const w = writer
+        const c = cover
+
+        if (title == null) {
+            t = props.infos.title
+        }
+        if (writer == null) {
+            w = props.infos.writer_id
+        }
+        if (cover == null) {
+            c = props.infos.cover
+        }
+        BookUpdate(id, t, w, c, createdAt)
     }
 
 
@@ -58,7 +82,6 @@ export default function BookModalComponent(props) {
     //     console.log('string:',string)
     // }
 
-
     const variavel = cover
     
     return (
@@ -72,6 +95,7 @@ export default function BookModalComponent(props) {
                 
                 {props.value == 'Update' ? (
                     <div className={`mx-5`}>
+
                         <div className={`w-full flex flex-row pb-5`}>
                             <div>UPDATE</div>
                             <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
@@ -79,21 +103,34 @@ export default function BookModalComponent(props) {
                         <form>
                             <div className={`flex flex-row`}>
                                 <div className={`flex flex-col mr-5`}>
+
                                     <label>Titulo</label>
-                                    <input type="text" placeholder='Titulo' defaultValue={props.infos?.title} onChange={getTitle} className={`flex bg-mainColor rounded-md w-72 h-10 pl-2 mb-10 `} />
+                                    <input type="text" placeholder='Titulo' defaultValue={props.infos.title} onChange={getTitle} className={`flex bg-mainColor rounded-md w-72 h-10 pl-2 mb-10 `} />
+
                                      <label>Autor</label>                   
-                                    <input type="text" placeholder='Autor' className={`flex bg-mainColor rounded-md w-72 h-10 pl-2`}/>
+                                    <select type="text" placeholder='Autor' onChange={()=>getWriter()} className={`flex bg-mainColor rounded-md w-72 h-10 pl-2`}>
+                                    {data.map(key => (
+                                        <>
+                                            <option value={key.writer_id} key={key} selected={key.writer_id == props.infos.writer_id ? true : false} className={``}>{key.escritor}</option>
+                                            </>
+                                        ))}
+                                    </select>
+                                    
                                 </div>
+
                                 <div className={`bg-mainColor rounded-md p-2 pb-4`}>
-                                    <input type="file" placeholder='capa' onChange={()=>getCover()} className={`file:text-amber-300 file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
-                                    <img alt="variavel" layout='fill' src={variavel} className={`h-48 w-32 rounded-2xl mx-auto`} />
+
+                                    <input type="file" placeholder='capa' onChange={() => getCover()} className={`file:text-amber-300 file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
+                                    
+                                    <img alt="" src={variavel == undefined ? props.infos.cover : variavel} className={`h-48 w-32 rounded-2xl mx-auto`} />
+
                                 </div>
                             </div>
-                            <button onClick={() => BookUpdate(props.infos.id, title, cover)}>Atualize um livro</button>
+                            <button onClick={() => chamaUpdate(props.infos.id, title, writer, cover, props.infos.createdAt)}>Atualize um livro</button>
                         </form>
-                                <button onClick={()=>displayString()}>
+                                {/* <button onClick={()=>displayString()}>
                                     Display String
-                                </button>
+                                </button> */}
                     </div>
 
                 ) : (
