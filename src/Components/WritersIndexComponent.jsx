@@ -37,8 +37,9 @@ export default function WritersIndexComponent() {
     return (
         <div className="">
             <div className={`
-            bg-gradient-to-bl from-gray-100 via-amber-100 to-gray-100 rounded-l-[40px]
-            mt-12 font-semibold text-center mx-auto pt-4 text-xl pb-5 sticky top-32
+            bg-gradient-to-bl from-gray-100 via-amber-100 to-gray-100
+            dark:bg-gradient-to-bl dark:from-escuroDark dark:via-anilDark dark:to-escuroDark 
+            rounded-l-[40px] mt-12 font-semibold text-center mx-auto pt-4 text-xl pb-5 sticky top-32
             `}>Autores mais lidos
                 <div>
                     {data.map((key, indice) => (
