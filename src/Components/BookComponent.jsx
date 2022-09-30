@@ -10,7 +10,7 @@ export default function BookComponent(props) {
     const resp = props.resp
     const escritorTratado = TrataWriter(resp.writer_id, writersglobal)
 
-    const infos = {id: resp.id, title: resp.title, cover: resp.cover, writer: escritorTratado}
+    const infos = {id: resp.id, title: resp.title, cover: resp.cover, writer: escritorTratado, writer_id: resp.writer_id, createdAt: resp.createdAt}
 
     return (
         <div className={`mb-4`}>
