@@ -85,10 +85,10 @@ export default function BookModalComponent(props) {
     // }
 
     const variavel = cover
-    
+    const color = props.value == 'Update' ? 'bg-mainColor dark:bg-mainDark' : 'bg-deleteColor dark:bg-deleteDark'
     return (
         <div>
-            <button onClick={openModal} className={`py-[2px] mx-1 px-2 rounded-full font-normal text-base bg-${props.color}`}>{props.value}</button>
+            <button onClick={openModal} className={`py-[2px] mx-1 px-2 rounded-full font-normal text-base ${color}`}>{props.value}</button>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
@@ -118,7 +118,7 @@ export default function BookModalComponent(props) {
                                     
                                 </div>
 
-                                <div className={`bg-mainColor dark:bg-mainDark rounded-md p-2 pb-4`}>
+                                <div className={`bg-mainColor dark:bg-mainDark text-white rounded-md p-2 pb-4`}>
 
                                     <input type="file" placeholder='capa' onChange={() => getCover()} className={`file:text-amber-300 dark:file:text-blueDark file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
                                     
@@ -134,16 +134,16 @@ export default function BookModalComponent(props) {
                     </div>
 
                 ) : (
-                    <div className={`mx-5`}>
-                    <div className={`w-full flex flex-row pb-5`}>
+                    <div className={`mx-5 ${tema}`}>
+                    <div className={`w-full flex flex-row pb-5 dark:text-white`}>
                         <div className="w-full">DELETAR LIVRO</div>
                         <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                     </div>
                     <form>
-                        <div className={` mr-5 ${tema}`}>
+                        <div className={`mr-5`}>
                                 <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 dark:text-white`}>Tem certeza que deseja deletar este livro?</div>
                         </div>
-                        <button onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
+                        <button className={`dark:text-white`} onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
                     </form>
                 </div>
                 )
