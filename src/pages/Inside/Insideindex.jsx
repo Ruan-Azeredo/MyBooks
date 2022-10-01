@@ -18,29 +18,26 @@ import ordenaAdicionadosRecentes from "../../functions/OrdenaAdicionadosRecentes
 
 export default function Insideindex() {
 
-    // const { iduserglobal, photoglobal } = useContext(AuthContext)
-    const iduserglobal = 2
+    const { idCooked } = useContext(AuthContext)
     const { setWritersglobal } = useContext(WritersContext)
     const { booksglobal, setBooksglobal } = useContext(BooksContext)
 
     const {tema} = useContext(DarkModeContext)
 
-    const [books, setBooks] = useState()
-    const [writers, setWriters] = useState()
     const [reviews, setReviews] = useState()
 
 
     useEffect(() => {
-        if (iduserglobal == null) {
+        if (idCooked == null) {
             Router.replace('/')
         } else {
-            axios.get(`http://localhost:3001/users/books/${iduserglobal}`)
+            axios.get(`http://localhost:3001/users/books/${idCooked}`)
             .then((result) => setBooksglobal(result.data))
             
-            axios.get(`http://localhost:3001/users/writers/${iduserglobal}`)
+            axios.get(`http://localhost:3001/users/writers/${idCooked}`)
             .then((result) => setWritersglobal(result.data))
             
-            axios.get(`http://localhost:3001/users/reviews/${iduserglobal}`)
+            axios.get(`http://localhost:3001/users/reviews/${idCooked}`)
             .then((result) => setReviews(result.data))
         }
     }, [setBooksglobal, setWritersglobal])
