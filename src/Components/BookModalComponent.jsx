@@ -1,19 +1,23 @@
 import Image from 'next/image';
 import { useContext, useState } from 'react';
 import Modal from 'react-modal';
+import DarkModeContext from '../Context/DarkModeContext';
 import DataContext from '../Context/DataContext';
 import BookDelete from '../functions/BookDelete';
 import BookUpdate from '../functions/BookUpdate';
-import { customStyles } from '../Package/Modal/customStyles';
+import customStyles from '../Package/Modal/customStyles';
 
 export default function BookModalComponent(props) {
 
-    const {data} = useContext(DataContext)
+    const { data } = useContext(DataContext)
+    const {tema} = useContext(DarkModeContext)
 
     //modal
     const [modalIsOpen, setIsOpen] = useState(false);
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
+    const customStylesM = customStyles(tema).customStyles
+    console.log('customStyles:',customStylesM)
 
     const [title, setTitle] = useState()
     const [cover, setCover] = useState()
@@ -92,21 +96,21 @@ export default function BookModalComponent(props) {
                 contentLabel="Example Modal">
                 
                 {props.value == 'Update' ? (
-                    <div className={`mx-5`}>
+                    <div className={`mx-5 ${tema}`}>
 
                         <div className={`w-full flex flex-row pb-5`}>
                             <div className="w-full">ATUALIZAR LIVRO</div>
                             <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                         </div>
                         <form>
-                            <div className={`flex flex-row`}>
-                                <div className={`flex flex-col mr-5`}>
+                            <div className={`flex flex-row `}>
+                                <div className={`flex flex-col mr-5 `}>
 
                                     <label>Titulo</label>
-                                    <input type="text" placeholder='Titulo' defaultValue={props.infos.title} onChange={getTitle} className={`flex bg-mainColor rounded-md w-72 h-10 pl-2 mb-10 `} />
+                                    <input type="text" placeholder='Titulo' defaultValue={props.infos.title} onChange={getTitle} className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2 mb-10 `} />
 
                                      <label>Autor</label>                   
-                                    <select type="text" placeholder='Autor' onChange={()=>getWriter()} className={`flex bg-mainColor rounded-md w-72 h-10 pl-2`}>
+                                    <select type="text" placeholder='Autor' onChange={()=>getWriter()} className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2`}>
                                     {data.map(key => (
                                         <option value={key.writer_id} key={key} selected={key.writer_id == props.infos.writer_id ? true : false}>{key.escritor}</option>
                                     ))}
@@ -114,9 +118,9 @@ export default function BookModalComponent(props) {
                                     
                                 </div>
 
-                                <div className={`bg-mainColor rounded-md p-2 pb-4`}>
+                                <div className={`bg-mainColor dark:bg-mainDark rounded-md p-2 pb-4`}>
 
-                                    <input type="file" placeholder='capa' onChange={() => getCover()} className={`file:text-amber-300 file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
+                                    <input type="file" placeholder='capa' onChange={() => getCover()} className={`file:text-amber-300 dark:file:text-blueDark file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
                                     
                                     <img alt="" src={variavel == undefined ? props.infos.cover : variavel} className={`h-48 w-32 rounded-2xl mx-auto`} />
 
@@ -136,8 +140,8 @@ export default function BookModalComponent(props) {
                         <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                     </div>
                     <form>
-                        <div className={` mr-5`}>
-                                <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 `}>Tem certeza que deseja deletar este livro?</div>
+                        <div className={` mr-5 ${tema}`}>
+                                <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 dark:text-white`}>Tem certeza que deseja deletar este livro?</div>
                         </div>
                         <button onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
                     </form>
