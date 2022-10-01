@@ -8,11 +8,7 @@ const axios = require('axios')
 
 export default function Autenticação(props) {
 
-    const {
-        iduserglobal, setIduserglobal,
-        photoglobal, setPhotoglobal,
-        nameglobal, setNameglobal
-    } = useContext(AuthContext)
+    const {setIduserglobal, setPhotoglobal, setNameglobal} = useContext(AuthContext)
 
     const [namevalue, setNamevalue] = useState()
     const [emailvalue, setEmailvalue] = useState()
