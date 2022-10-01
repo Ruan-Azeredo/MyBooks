@@ -52,30 +52,30 @@ export default function SidebarComponent() {
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStylesM}>
                 {define == 'Autor' ? (
                     <div className={`mx-5 ${tema}`}>
-                        <div className={`w-full flex flex-row pb-5`}>
+                        <div className={`w-full flex flex-row pb-5 dark:text-white`}>
                             <div className="w-full">ADICIONAR AUTOR</div>
                             <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                         </div>
                         <form>
-                            <div className={`mr-5`}>
+                            <div className={`mr-5 dark:text-white`}>
                                     <label>Autor</label>
                                     <input type="text" onChange={getAutor} required className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2 mb-10 `} />
                             </div>
-                            <button>Criar novo Autor</button>
+                            <button className={`dark:text-white`}>Criar novo Autor</button>
                         </form>
                     </div>
                 ): (
                     <div className={`mx-5 ${tema}`}>
-                        <div className={`w-full flex flex-row pb-5`}>
-                            <div className="w-full">ADICIONAR LIVRO</div>
+                        <div className={`w-full flex flex-row pb-5 dark:text-white`}>
+                            <div className="w-full ">ADICIONAR LIVRO</div>
                             <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                         </div>
                         <form>
                             <div className={`flex flex-row`}>
-                                <div className={`flex flex-col mr-5`}>
+                                <div className={`flex flex-col mr-5 dark:text-white`}>
 
                                     <label>Titulo</label>
-                                    <input type="text" onChange={getTitle} required className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2 mb-10 `} />
+                                    <input type="text" onChange={getTitle} required className={`flex bg-mainColor dark:bg-mainDark  rounded-md w-72 h-10 pl-2 mb-10 `} />
 
                                     <label>Autor</label>                   
                                     <select name="select" required onChange={() => getWriter()} className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2`}>
@@ -87,7 +87,7 @@ export default function SidebarComponent() {
                     
                                 </div>
 
-                                <div className={`bg-mainColor dark:bg-mainDark rounded-md p-2 pb-4`}>
+                                <div className={`bg-mainColor dark:bg-mainDark text-white rounded-md p-2 pb-4`}>
 
                                     <input type="file" required onChange={() => getCover()} className={`file:text-amber-300 dark:file:text-blueDark file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
                                     
@@ -99,7 +99,7 @@ export default function SidebarComponent() {
 
                                 </div>
                             </div>
-                            <button>Criar novo Livro</button>
+                            <button className={`dark:text-white`}>Criar novo Livro</button>
                         </form>
                     </div>
                 )}

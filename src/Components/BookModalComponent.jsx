@@ -92,19 +92,19 @@ export default function BookModalComponent(props) {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                style={customStyles}
+                style={customStylesM}
                 contentLabel="Example Modal">
                 
                 {props.value == 'Update' ? (
                     <div className={`mx-5 ${tema}`}>
 
-                        <div className={`w-full flex flex-row pb-5`}>
+                        <div className={`w-full flex flex-row pb-5 dark:text-white`}>
                             <div className="w-full">ATUALIZAR LIVRO</div>
                             <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                         </div>
                         <form>
                             <div className={`flex flex-row `}>
-                                <div className={`flex flex-col mr-5 `}>
+                                <div className={`flex flex-col mr-5 dark:text-white`}>
 
                                     <label>Titulo</label>
                                     <input type="text" placeholder='Titulo' defaultValue={props.infos.title} onChange={getTitle} className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2 mb-10 `} />
@@ -126,7 +126,7 @@ export default function BookModalComponent(props) {
 
                                 </div>
                             </div>
-                            <button onClick={() => chamaUpdate(props.infos.id, title, writer, cover, props.infos.createdAt)}>Atualize um livro</button>
+                            <button className={`dark:text-white`} onClick={() => chamaUpdate(props.infos.id, title, writer, cover, props.infos.createdAt)}>Atualize um livro</button>
                         </form>
                                 {/* <button onClick={()=>displayString()}>
                                     Display String
