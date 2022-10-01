@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useContext } from 'react'
 import WritersContext from '../Context/WritersContext'
 import limitText from '../functions/limitText'
@@ -6,6 +5,7 @@ import TrataWriter from '../functions/TrataWriter'
 import BookModalComponent from './BookModalComponent'
 
 export default function BookComponent(props) {
+
     const { writersglobal } = useContext(WritersContext)
     const resp = props.resp
     const escritorTratado = TrataWriter(resp.writer_id, writersglobal)
@@ -23,8 +23,8 @@ export default function BookComponent(props) {
                 <div className={`text-xs mb-4`}>{escritorTratado}</div>
             </div>
             <div className={`flex flex-row justify-center content-center w-40`}>
-                <BookModalComponent value='Update' color='mainColor' infos={infos} />
-                <BookModalComponent value='Delete' color='deleteColor' infos={infos} />
+                <BookModalComponent value='Update' infos={infos} />
+                <BookModalComponent value='Delete' infos={infos} />
             </div>
         </div>
     )
