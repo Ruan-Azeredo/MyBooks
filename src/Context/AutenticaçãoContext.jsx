@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { createContext, useState } from "react";
 
 
@@ -9,13 +10,23 @@ export function AutenticaçãoProvider(props) {
     const [photoglobal, setPhotoglobal] = useState()
     const [nameglobal, setNameglobal] = useState()
 
+    if (iduserglobal) {
+        Cookies.set('MyBook-idUser', iduserglobal, { expires: 7 })
+        Cookies.set('MyBook-photoUser', photoglobal, { expires: 7 })
+        Cookies.set('MyBook-nameUser', nameglobal, { expires: 7 })
+    }
+    const idCooked = Cookies.get('MyBook-idUser')
+    const photoCooked = Cookies.get('MyBook-photoUser')
+    const nameCooked = Cookies.get('MyBook-nameUser')
+    console.log('idCooked:',idCooked)
+
     return (
         <AuthContext.Provider value={{
-            iduserglobal,
+            nameCooked,
+            photoCooked,
+            idCooked,
             setIduserglobal,
-            photoglobal,
             setPhotoglobal,
-            nameglobal,
             setNameglobal
         }}>{props.children}</AuthContext.Provider>
     )
