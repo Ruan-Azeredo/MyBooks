@@ -2,6 +2,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { getAuth } from 'firebase/auth'
 import Router from 'next/router'
 import { useContext, useState } from 'react'
+import InputLoginComponent from '../components/InputLoginComponent'
 import AuthContext from '../Context/AutenticaçãoContext'
 import app from '../Services/firebase'
 const axios = require('axios')
@@ -62,16 +63,31 @@ export default function Autenticação(props) {
     }
 
     return (
-        <>
-            <label>Nome</label>
-            <input type="text" onChange={getName}/>
-            <label>Email</label>
-            <input type="text" onChange={getEmail}/>
-            <label>Senha</label>
-            <input type="text" onChange={getPassword}/>
-            <button onClick={() => alreadyRegistered(namevalue, emailvalue, passwordvalue)}>Entrar com Email e Senha</button>
-            <br/>
-            <button onClick={handleGoogleSingIn}>Entrar com Google</button>
-        </>
+        <div className={`flex h-screen items-center justify-center`}>
+
+            <div className={`hidden md:block md:w-1/2 lg:w-2/3`}>
+                <img src="https://source.unsplash.com/random" alt="" className={`h-screen w-full object-cover`} />
+            </div>
+
+            <div className={`m-10 w-full mb:w-1/2 lg:w-1/3`}>
+                <h1 className={`text-3xl font-bold mb-5`}>Entre ou Cadastre-se</h1>
+
+                <div className={`flex flex-col`}>
+                    <label>Nome</label>
+                    <InputLoginComponent type={'text'} onChange={getName} />
+                    <label>Email</label>
+                    <InputLoginComponent type={'email'} onChange={getEmail} />
+                    <label>Senha</label>
+                    <InputLoginComponent type={'password'} onChange={getPassword} />
+                </div>    
+                
+                <button onClick={() => alreadyRegistered(namevalue, emailvalue, passwordvalue)} className={`w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-4 py-3 mt-6`}>Entrar com Email e Senha</button>
+
+                <hr className={`my-6 border-gray-300 w-full`} />
+
+                <button onClick={handleGoogleSingIn}className={`w-full bg-red-500 hover:bg-red-400 text-white rounded-lg px-4 py-3 mt-6`}>Entrar com Google</button>
+            </div>
+            
+        </div>
     )
 }
