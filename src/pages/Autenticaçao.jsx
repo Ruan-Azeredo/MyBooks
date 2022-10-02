@@ -5,6 +5,7 @@ import { useContext, useState } from 'react'
 import InputLoginComponent from '../components/InputLoginComponent'
 import AuthContext from '../Context/AutenticaçãoContext'
 import app from '../Services/firebase'
+// import { search.png } from '../public/img/'
 const axios = require('axios')
 
 export default function Autenticação(props) {
@@ -85,9 +86,12 @@ export default function Autenticação(props) {
 
                 <hr className={`my-6 border-gray-300 w-full`} />
 
-                <button onClick={handleGoogleSingIn}className={`w-full bg-red-500 hover:bg-red-400 text-white rounded-lg px-4 py-3 mt-6`}>Entrar com Google</button>
+                <button onClick={handleGoogleSingIn} className={`w-full bg-red-500 hover:bg-red-400 text-white rounded-lg px-4 py-3 mt-6 flex flex-row justify-center`}>
+                    <div>Entrar com Google</div>
+                    <img src="https://img.icons8.com/fluency-systems-filled/344/google-logo.png" alt="" className='invert w-6 h-6 ml-5'/>
+                </button>
             </div>
-            
+
         </div>
     )
 }
