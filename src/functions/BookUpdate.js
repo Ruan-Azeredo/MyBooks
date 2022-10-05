@@ -1,18 +1,29 @@
+import BookCreate from './BookCreate'
+import BookDelete from './BookDelete'
+
 const axios = require('axios')
 
-export default function BookUpdate(idCooked, id, titlevalue, writervalue, covervalue, createdAt) {
+const BookUpdate = (idCooked, writer_id_original, writer_id_novo, id, title_original, title_novo, file, file_name, file_url) => {
+    console.log('file:', file)
+    console.log('w original:', writer_id_original, 'w novo:', writer_id_novo)
+    console.log('title novo', title_novo)
 
-    const deleta = (id) => {
-        axios.delete(`http://localhost:3001/users/books/1/1/${id}`)
-    }
-    console.log('writervalue:', writervalue)
-    const posta = (titlevalue, writervalue, covervalue) => {
-        axios.post(`http://localhost:3001/users/books/${idCooked}/${writervalue}/`, {
-            title: titlevalue,
-            cover: covervalue,
-            createdAt: createdAt
+    if (writer_id_novo == writer_id_original || writer_id_novo == undefined) {
+        console.log('foi para put')
+        
+        axios.put(`http://localhost:3001/users/books/${idCooked}/${writer_id_original}/${id}/${title_novo}/${file_name}`, file, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
         })
-    }
-    deleta(id)
-    posta(titlevalue, writervalue, covervalue)
+    } else {
+        BookDelete(id, false)
+        if (title_novo) {
+            BookCreate(idCooked, writer_id_novo, title_novo, file, file_name)
+        } else {
+            BookCreate(idCooked, writer_id_novo, title_original, file, file_name)
+        }
+    }    
 }
+
+export default BookUpdate
