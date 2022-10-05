@@ -21,7 +21,7 @@ export default function UserComponent() {
         bg-gradient-to-br from-gray-100 via-amber-100 to-gray-100
         dark:bg-gradient-to-br dark:from-escuroDark dark:via-anilDark dark:to-escuroDark  
         `}>
-            <img alt="" src={img} className={`h-20 w-20 rounded-3xl mx-auto mt-8 object-cover`} />
+            <img alt="" src={img} referrerpolicy="no-referrer" className={`h-20 w-20 rounded-3xl mx-auto mt-8 object-cover`} />
             <div className={`mx-10 px-2`}>Bem vindo de volta</div>
             <div className={`font-bold justify-self-center text-xl pb-4`}>{ n }</div>
         </div>
