@@ -8,6 +8,8 @@ import BookDelete from '../functions/BookDelete';
 import BookUpdate from '../functions/BookUpdate';
 import customStyles from '../Package/Modal/customStyles';
 
+const axios = require('axios')
+
 export default function BookModalComponent(props) {
 
     const { data } = useContext(DataContext)
@@ -23,11 +25,15 @@ export default function BookModalComponent(props) {
     const [title, setTitle] = useState()
     const [cover, setCover] = useState()
     const [writer, setWriter] = useState()
+    const [file, setFile] = useState()
 
 
     const getTitle = () => setTitle(event.target.value)
     const getCover = () => {
         setCover(URL.createObjectURL(event.target.files[0]))
+        let formData = new FormData()
+        formData.append('cover', event.target.files[0])
+        setFile(formData)
     }
     const getWriter = () => {
         setWriter(event.target.value)
@@ -51,6 +57,15 @@ export default function BookModalComponent(props) {
     }
 
     const color = props.value == 'Update' ? 'bg-mainColor dark:bg-mainDark' : 'bg-deleteColor dark:bg-deleteDark'
+
+
+    const update = (idCooked, writer_id, id, title, file) => {
+        axios.put(`http://localhost:3001/users/books/${idCooked}/${writer_id}/${title}/${id}`, file, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+    }
 
     return (
         <div>
@@ -88,11 +103,11 @@ export default function BookModalComponent(props) {
 
                                     <input type="file" placeholder='capa' onChange={() => getCover()} className={`file:text-amber-300 dark:file:text-blueDark file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
                                     
-                                    <img alt="" src={cover == undefined ? props.infos.cover : cover} className={`h-48 w-32 rounded-2xl mx-auto`} />
+                                    <img alt="" src={cover == undefined ? 'http://localhost:3001/' + props.infos.url : cover} className={`h-48 w-32 rounded-2xl mx-auto`} />
 
                                 </div>
                             </div>
-                            <button className={`dark:text-white`} onClick={() => chamaUpdate(props.infos.id, title, writer, cover, props.infos.createdAt)}>Atualize um livro</button>
+                            <button className={`dark:text-white`} onClick={() => update(idCooked, props.infos.writer_id, props.infos.id, title, file)}>Atualize um livro</button>
                         </form>
                                 {/* <button onClick={()=>displayString()}>
                                     Display String
