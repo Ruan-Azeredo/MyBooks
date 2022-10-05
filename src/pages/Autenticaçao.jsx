@@ -67,11 +67,14 @@ export default function Autenticação(props) {
         <div className={`flex h-screen items-center justify-center`}>
 
             <div className={`hidden md:block md:w-1/2 lg:w-2/3`}>
-                <img src="https://source.unsplash.com/random" alt="" className={`h-screen w-full object-cover`} />
+                <img src="https://source.unsplash.com/800x600/?book" alt="" className={`h-screen w-full object-cover`} />
             </div>
 
             <div className={`m-10 w-full mb:w-1/2 lg:w-1/3`}>
-                <h1 className={`text-3xl font-bold mb-5`}>Entre ou Cadastre-se</h1>
+                <div className={`mb-5`}>
+                    <h1 className={`text-3xl font-bold left-2 text-gray-800 relative`}>MyBooks</h1>
+                    <div className={`w-40 h-2 -top-[6px] -z-30 bg-yellow-400 relative`}></div>
+                </div>
 
                 <div className={`flex flex-col`}>
                     <label>Nome</label>
