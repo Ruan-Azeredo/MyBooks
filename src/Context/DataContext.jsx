@@ -49,7 +49,6 @@ export function DataProvider(props) {
         })
 
         writersglobal?.map(escritor => { // caso o escritor nã tenha nenhum livro, porem, ainda existe com a qt = 0
-            console.log('writersglobal:', writersglobal)
             if (!arrayEscritores.includes(escritor.name)) {
                 arrayFinal.push({writer_id: escritor.id, escritor: escritor.name, quantidade: 0 })
             }
