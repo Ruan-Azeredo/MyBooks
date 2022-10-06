@@ -18,7 +18,6 @@ export function AutenticaçãoProvider(props) {
     const idCooked = Cookies.get('MyBook-idUser')
     const photoCooked = Cookies.get('MyBook-photoUser')
     const nameCooked = Cookies.get('MyBook-nameUser')
-    console.log('idCooked:',idCooked)
 
     return (
         <AuthContext.Provider value={{
