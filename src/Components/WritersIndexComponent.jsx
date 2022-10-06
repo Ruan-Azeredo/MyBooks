@@ -21,11 +21,9 @@ export default function WritersIndexComponent() {
     }
 
     ordenaMaisLidos(data)
-    console.log('data:',data)
 
     const limitaNEscritores = (key, indice) => {
         if (indice <= 3) {
-            console.log('key', key)
             return ( 
                 <div key={key.id} className={`font-medium text-base text-start px-7 pt-6`}>{key.escritor}
                     <div className={`font-normal`}>{key.quantidade} Livros</div>
