@@ -4,16 +4,16 @@ const DarkModeContext = createContext()
 
 export function DarkModeProvider(props) {
 
-    const [tema, setTema] = useState('light')
+    const [tema, setTema] = useState('')
 
-    // useEffect(() => {
-    //     const tema = localStorage.getItem('tema')
-    //     console.log('tema: ', tema)
-    //     setTema(tema)
-    // }, [])
+    useEffect(() => {
+        const tema = localStorage.getItem('temaGlobal')
+        setTema(tema)
+    }, [])
 
     const alterarTema = () => {
-        setTema(tema == 'light' ? 'dark' : 'light')
+        setTema(tema == '' ? 'dark' : '')
+        localStorage.setItem('temaGlobal', tema == '' ? 'dark' : '')
     }
 
     return (
