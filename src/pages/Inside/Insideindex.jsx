@@ -45,8 +45,8 @@ export default function Insideindex() {
     const arrayBooks = booksglobal
     ordenaAdicionadosRecentes(arrayBooks)
     
-    const renderizaReview = (resp) => {
-        if(resp.id <= 2){
+    const renderizaReview = (resp, index) => {
+        if(index <= 1){
             return (
                 <div key={resp.id} className={``}>
                     <ReviewsComponentIndex resp={resp} />
@@ -62,8 +62,8 @@ export default function Insideindex() {
                 <HeaderComponent/>
                 <UserComponent />
                 <ReviewContentIndex>
-                    {reviews?.map(resp => (
-                        renderizaReview(resp)
+                    {reviews?.map((resp, index) => (
+                        renderizaReview(resp, index)
                     ))}
                     <SeeMoreComponent/>
                 </ReviewContentIndex>
