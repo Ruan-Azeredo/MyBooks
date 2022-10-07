@@ -3,6 +3,8 @@ import Modal from "react-modal";
 import AuthContext from "../Context/AutenticaçãoContext";
 import DarkModeContext from "../Context/DarkModeContext";
 import DataContext from "../Context/DataContext";
+import BookCreate from "../functions/BookCreate";
+import WriterCreate from "../functions/WriterCreate";
 import customStyles from '../Package/Modal/customStyles';
 
 const axios = require('axios')
@@ -39,14 +41,6 @@ export default function SidebarComponent() {
         setWriterId(event.target.value)
     }
     const getAutor = () => setAutor(event.target.value)
-
-    const criaLivro = (idCooked, writer_id, title, file) => {
-        axios.post(`http://localhost:3001/users/books/${idCooked}/${writer_id}/${title}`, file, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
-    }
     
     return (
         <div className={`w-full flex col-start-1 col-end-2 fixed left-8 top-[310px]`}>
@@ -76,10 +70,10 @@ export default function SidebarComponent() {
                                     <label>Autor</label>
                                     <input type="text" onChange={getAutor} required className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2 mb-10 `} />
                             </div>
-                            <button className={`dark:text-white`}>Criar novo Autor</button>
+                            <button className={`dark:text-white`} onClick={()=>WriterCreate(idCooked,autor)}>Criar novo Autor</button>
                         </form>
                     </div>
-                ): (
+                ):(
                     <div className={`mx-5 ${tema}`}>
                         <div className={`w-full flex flex-row pb-5 dark:text-white`}>
                             <div className="w-full ">ADICIONAR LIVRO</div>
@@ -114,7 +108,7 @@ export default function SidebarComponent() {
 
                                 </div>
                             </div>
-                            <button className={`dark:text-white`} onClick={()=>criaLivro(idCooked, writerId, title, file)}>Criar novo Livro</button>
+                            <button className={`dark:text-white`} onClick={()=>BookCreate(idCooked, writerId, title, file)}>Criar novo Livro</button>
                         </form>
                     </div>
                 )}
