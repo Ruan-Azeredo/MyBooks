@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import AuthContext from '../Context/AutenticaçãoContext';
@@ -39,33 +38,7 @@ export default function BookModalComponent(props) {
         setWriter(event.target.value)
     }
 
-    const chamaUpdate = (id, title, writer, cover, createdAt) => {
-        const t = title
-        const w = writer
-        const c = cover
-
-        if (title == null) {
-            t = props.infos.title
-        }
-        if (writer == null) {
-            w = props.infos.writer_id
-        }
-        if (cover == null) {
-            c = props.infos.cover
-        }
-        BookUpdate(idCooked ,id, t, w, c, createdAt)
-    }
-
     const color = props.value == 'Update' ? 'bg-mainColor dark:bg-mainDark' : 'bg-deleteColor dark:bg-deleteDark'
-
-
-    const update = (idCooked, writer_id, id, title, file) => {
-        axios.put(`http://localhost:3001/users/books/${idCooked}/${writer_id}/${title}/${id}`, file, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
-    }
 
     return (
         <div>
@@ -107,11 +80,9 @@ export default function BookModalComponent(props) {
 
                                 </div>
                             </div>
-                            <button className={`dark:text-white`} onClick={() => update(idCooked, props.infos.writer_id, props.infos.id, title, file)}>Atualize um livro</button>
+                            
+                            <button className={`dark:text-white`} onClick={() => BookUpdate(idCooked, props.infos.writer_id, writer, props.infos.id, props.infos.title, title, file, props.infos.name, props.infos.url)}>Atualize um livro</button>
                         </form>
-                                {/* <button onClick={()=>displayString()}>
-                                    Display String
-                                </button> */}
                     </div>
 
                 ) : (
