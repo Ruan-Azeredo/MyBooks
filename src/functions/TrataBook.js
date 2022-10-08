@@ -8,7 +8,7 @@ const TrataBook = (book_id, y = 0, respss = null) => {
     const books = booksglobal
 
     if (books[y].id == book_id) {
-        respss = books[y].cover
+        respss = books[y].url
         return respss
     }
     
