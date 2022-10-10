@@ -61,11 +61,10 @@ export default function Insideindex() {
             <div className={`grid grid-cols-6 bg-white dark:bg-[#464646] text-[#464646] dark:text-white`}>
                 <HeaderComponent/>
                 <UserComponent />
-                <ReviewContentIndex>
+                <ReviewContentIndex index={true}>
                     {reviews?.map((resp, index) => (
                         renderizaReview(resp, index)
                     ))}
-                    <SeeMoreComponent/>
                 </ReviewContentIndex>
                 <SidebarComponent />
                 <BookContent>
