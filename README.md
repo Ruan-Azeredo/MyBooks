@@ -1,3 +1,15 @@
+# MyBooks
+
+  Esta é uma aplicação que consiste num sistema onde o usuario, leitor, vai poder registar suas resenhas e reflexões que teve ao longo da leitura de um livro.
+  
+  Para tal, este sistema possui primeiramente um formato de cadastro utilizando o firebase, que permite ao usuario se logar a partir de sua conta do google. Caso o sistema identifique que o email do usuario já é compativel com um ussuario exixtente, ele valida o ususario para abrir a conta do mesmo. Caso o usuario ainda não exista, será criada uma nova conta e entrará no sistema.
+  
+  Ao entrar no sistema, o usuario podera cadastrar seus autores preditelos, e dentro destes autores, cadastrar seus livros pertencentas a cada autor, e em cada livro escrever resenhas, que são justamente as ideias do usuario que ele quer guardar e ter acesso de forma facil e rapida.
+  
+  Esta aplicação se comunica com o Back-end desenvolvido em node que se encontra em https://github.com/Ruan-Azeredo/MyBooks-Backend.
+  
+ ----------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
