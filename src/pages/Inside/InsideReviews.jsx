@@ -6,12 +6,14 @@ import SidebarComponent from "../../components/SidebarComponent"
 import UserComponent from "../../components/UserComponent"
 import ReviewContentIndex from "../../content/ReviewContentIndex"
 import AuthContext from "../../Context/AutenticaçãoContext"
+import BooksContext from "../../Context/BooksContext"
 import DarkModeContext from "../../Context/DarkModeContext"
 import WritersContext from "../../Context/WritersContext"
 
 export default function InsideReviews() {
     const { idCooked } = useContext(AuthContext)
-    const tema = useContext(DarkModeContext)
+    const { tema } = useContext(DarkModeContext)
+    const { booksglobal, setBooksglobal } = useContext(BooksContext)
 
     const { setWritersglobal } = useContext(WritersContext)
     const [reviews, setReviews] = useState()
@@ -19,14 +21,17 @@ export default function InsideReviews() {
     useEffect(() => {
         if (idCooked == null) {
             Router.replace('/')
-        } else {            
+        } else {         
+            axios.get(`http://localhost:3001/users/books/${idCooked}`)
+            .then((result) => setBooksglobal(result.data))
+
             axios.get(`http://localhost:3001/users/writers/${idCooked}`)
             .then((result) => setWritersglobal(result.data))
             
             axios.get(`http://localhost:3001/users/reviews/${idCooked}`)
             .then((result) => setReviews(result.data))
         }
-    })
+    }, [setBooksglobal, setWritersglobal])
 
     return (
         <div className={`${tema}`}>
@@ -37,7 +42,7 @@ export default function InsideReviews() {
                 <ReviewContentIndex>
                     {reviews?.map(resp => (
                         <div key={resp.id} className={``}>
-                        <ReviewsComponentIndex resp={resp} />
+                            <ReviewsComponentIndex resp={resp} index={false} />
                     </div>
                     ))}
                 </ReviewContentIndex>
