@@ -2,7 +2,7 @@ export default function customStyles(tema) {
 
     let cor = null
     let backg = null
-    if (tema == 'light') {
+    if (tema != 'dark') {
         cor = '#ffffff'
         backg = 'rgb(255, 255, 255, 0.8)'
     } else {
