@@ -49,7 +49,7 @@ export default function Insideindex() {
         if(index <= 1){
             return (
                 <div key={resp.id} className={``}>
-                    <ReviewsComponentIndex resp={resp} />
+                    <ReviewsComponentIndex resp={resp} index={true}/>
                 </div>
             )
         }
