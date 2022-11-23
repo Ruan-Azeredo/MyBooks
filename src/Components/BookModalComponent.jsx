@@ -7,8 +7,6 @@ import BookDelete from '../functions/BookDelete';
 import BookUpdate from '../functions/BookUpdate';
 import customStyles from '../Package/Modal/customStyles';
 
-const axios = require('axios')
-
 export default function BookModalComponent(props) {
 
     const { data } = useContext(DataContext)
