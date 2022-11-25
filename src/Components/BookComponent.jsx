@@ -14,9 +14,9 @@ export default function BookComponent(props) {
     const infos = { id: resp.id, title: resp.title, name: resp.name, url: resp.url, writer: escritorTratado, writer_id: resp.writer_id, createdAt: resp.createdAt }
 
     return (
-        <div className={`mb-4`}>
+        <div className={`mb-8`}>
             <button>
-                <div className='absolute -mt-3 ml-28 rounded-md bg-anilDark pt-4 pb-2 px-1 text-white'>
+                <div className='absolute -mt-3 ml-28 rounded-md bg-anilDark pt-4 pb-2 px-1 text-white pointer'>
                     <div className={`-rotate-12`}>{IconPencil}</div>
                 </div>
                 <img alt='' layout='fill' className={`h-60 w-40 rounded-3xl mb-4`} src={'http://localhost:3001/' + resp.url}/>
