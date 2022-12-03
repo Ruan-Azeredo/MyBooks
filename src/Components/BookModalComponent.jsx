@@ -79,7 +79,7 @@ export default function BookModalComponent(props) {
                                 </div>
                             </div>
                             
-                            <button className={`dark:text-white`} onClick={() => BookUpdate(idCooked, props.infos.writer_id, writer, props.infos.id, props.infos.title, title, file, props.infos.name, props.infos.url)}>Atualize um livro</button>
+                            <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => BookUpdate(idCooked, props.infos.writer_id, writer, props.infos.id, props.infos.title, title, file, props.infos.name, props.infos.url)}>Atualize um livro</button>
                         </form>
                     </div>
 
@@ -93,7 +93,7 @@ export default function BookModalComponent(props) {
                         <div className={`mr-5`}>
                                 <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 dark:text-white`}>Tem certeza que deseja deletar este livro?</div>
                         </div>
-                        <button className={`dark:text-white`} onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
+                        <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
                     </form>
                 </div>
                 )

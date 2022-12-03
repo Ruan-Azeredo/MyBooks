@@ -70,7 +70,7 @@ export default function SidebarComponent() {
                                     <label>Autor</label>
                                     <input type="text" onChange={getAutor} required className={`flex bg-mainColor dark:bg-mainDark rounded-md w-72 h-10 pl-2 mb-10 `} />
                             </div>
-                            <button className={`dark:text-white`} onClick={()=>WriterCreate(idCooked,autor)}>Criar novo Autor</button>
+                            <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={()=>WriterCreate(idCooked,autor)}>Criar novo Autor</button>
                         </form>
                     </div>
                 ):(
@@ -108,7 +108,7 @@ export default function SidebarComponent() {
 
                                 </div>
                             </div>
-                            <button className={`dark:text-white`} onClick={()=>BookCreate(idCooked, writerId, title, file)}>Criar novo Livro</button>
+                            <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={()=>BookCreate(idCooked, writerId, title, file)}>Criar novo Livro</button>
                         </form>
                     </div>
                 )}
