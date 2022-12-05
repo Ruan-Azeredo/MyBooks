@@ -17,11 +17,11 @@ export default function ReviewsComponentIndex(props) {
         <div className={`bg-mainColor dark:bg-mainDark h-32 w-96 mb-6 relative rounded-3xl`}>
             <img alt="" layout="fill" className={`h-[180px] w-[120px] rounded-3xl absolute -top-16 left-4`} src={'http://localhost:3001/' + TrataBook(resp.book_id)}/>
             <div className={`left-[150px] relative pt-2`}>{transformDate(resp)}</div>
-            <div className={`left-[150px] relative pt-2 w-56`}>{limitText(resp.text, 80)}</div>
+            <div className={`left-[150px] relative pt-1 w-56 text-sm`}>{limitText(resp.text, 120)}</div>
             {props.index == false ? (
                 <div>
-                    <ReviewModalComponent />
-                    <ReviewModalComponent />
+                    <ReviewModalComponent value='Update'/>
+                    <ReviewModalComponent value='Delete'/>
                 </div>
             ) : null}
         </div>
