@@ -1,4 +1,21 @@
+import { useContext, useState } from "react";
+import DarkModeContext from "../Context/DarkModeContext";
+import customStyles from "../Package/Modal/customStyles";
+import Modal from "react-modal";
+
 export default function ReviewModalComponent(props) {
+
+    const {tema} = useContext(DarkModeContext)
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+    // const [data, setData] = useState({})
+    const openModal = () => {
+    setIsOpen(true);
+    }
+    const closeModal = () => {
+    setIsOpen(false)
+    }
+    const customStylesM = customStyles(tema).customStyles
     
     const color = props.value == 'Update' ? 'bg-mainColor dark:bg-mainDark' : 'bg-deleteColor dark:bg-deleteDark'
 
@@ -22,7 +39,7 @@ export default function ReviewModalComponent(props) {
                             <div className={`flex flex-row `}>
                                 <div className={`flex flex-col mr-5 dark:text-white`}>
 
-                                    <img src={'http://localhost:3001/' + props.infos.url} alt="" className={`h-48 w-32 rounded-2xl mx-auto`}/>
+                                    {/* <img src={'http://localhost:3001/' + props.infos.url} alt="" className={`h-48 w-32 rounded-2xl mx-auto`}/> */}
                                     
                                 </div>
 
@@ -30,7 +47,7 @@ export default function ReviewModalComponent(props) {
 
                                     <input className={`file:text-amber-300 dark:file:text-blueDark file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
                                     
-                                    <img alt="" src={cover == undefined ? 'http://localhost:3001/' + props.infos.url : cover} className={`h-48 w-32 rounded-2xl mx-auto`} />
+                                    {/* <img alt="" src={cover == undefined ? 'http://localhost:3001/' + props.infos.url : cover} className={`h-48 w-32 rounded-2xl mx-auto`} /> */}
 
                                 </div>
                             </div>
