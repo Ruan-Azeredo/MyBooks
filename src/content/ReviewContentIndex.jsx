@@ -7,7 +7,7 @@ export default function ReviewContentIndex(props) {
                 <div className={`mb-24 text-xl font-bold`}>Resenhas</div>
             ) : null}
             <div className="flex flex-row">
-                <div className="grid grid-cols-2 gap-16">           
+                <div className="grid grid-cols-2 gap-16 pt-10">           
                     {props.children}
                 </div>{
                     props.index == true ? (
