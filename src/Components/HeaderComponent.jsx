@@ -13,10 +13,10 @@ export default function HeaderComponent() {
             </div>
             <div className={`flex-row flex justify-end ml-[600px]`}>
                 <div className={`font-semibold justify-center mx-28 hover:mx-[10.5px] grid justify-items-center felx-col hover:text-yellow-400 dark:hover:text-blueDark group`}>Perfil
-                    <div className={`bg-mainColor h-5 w-5 relative rotate-45 mx-auto mt-1 hidden group-hover:flex`}></div>
-                    <div className={`bg-mainColor h-32 w-60 rounded-xl relative -top-3 hidden group-hover:flex`}>
-                        {/* <img src={photoCooked} referrerPolicy="no-referrer" alt="" className={`h-10 w-10 rounded-xl relative top-4 left-6`} /> */}
-                        {/* <div className="relative left-10 top-3 w-36 text-white">{nameCooked}</div> */}
+                    <div className={`dark:bg-anilDark bg-amber-200 h-5 w-5 relative rotate-45 mx-auto mt-1 hidden group-hover:flex`}></div>
+                    <div className={`dark:bg-anilDark bg-amber-200 items-center h-20 w-60 rounded-xl relative -top-3 hidden group-hover:flex`}>
+                        <img src={photoCooked} referrerPolicy="no-referrer" alt="" className={`h-10 w-10 rounded-lg relative left-6`} />
+                        <div className="relative left-10 w-36 text-black dark:text-white text-base font-normal">{nameCooked}</div>
                     </div>
                 </div>
                 <ButtonDarkModeComponent/>
