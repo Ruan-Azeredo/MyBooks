@@ -7,11 +7,14 @@ import customStyles from '../Package/Modal/customStyles'
 import BookModalComponent from './BookModalComponent'
 import { IconPencil } from './icons'
 import Modal from "react-modal"
+import AuthContext from '../Context/AutenticaçãoContext'
+import ReviewCreate from '../functions/ReviewCreate'
 
 export default function BookComponent(props) {
 
     const { writersglobal } = useContext(WritersContext)
-    const {tema} = useContext(DarkModeContext)
+    const { tema } = useContext(DarkModeContext)
+    const {idCooked} = useContext(AuthContext)
     const resp = props.resp
     const escritorTratado = TrataWriter(resp.writer_id, writersglobal)
 
@@ -21,7 +24,11 @@ export default function BookComponent(props) {
     const closeModal = () => setIsOpen(false);
     const customStylesM = customStyles(tema).customStyles
 
+    const [text, setText] = useState()
+
     const infos = { id: resp.id, title: resp.title, name: resp.name, url: resp.url, writer: escritorTratado, writer_id: resp.writer_id, createdAt: resp.createdAt }
+
+    const getText = () => setText(event.target.value)
 
     return (
         <div className={`mb-8`}>
@@ -52,12 +59,12 @@ export default function BookComponent(props) {
                             {/* <div className='w-[120px] mx-auto'>{infos.writer}</div> */}
                         </div>
                         <div>
-                            <textarea className='bg-mainColor dark:bg-mainDark p-4 w-80 h-80 outline-none rounded-2xl mr-4 ml-8'></textarea>
+                            <textarea onChange={()=>getText()} className='bg-mainColor dark:bg-mainDark p-4 w-80 h-80 outline-none rounded-2xl mr-4 ml-8'></textarea>
                         </div>
                     </div>
-                    {/* <div className='h-10 -left-10 bg-mainDark -bottom-5 relative'> */}
-                        <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => BookDelete(props.infos.id)}>Criar nova Resenha</button>
-                    {/* </div> */}
+                    <form>
+                        <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => ReviewCreate(idCooked, infos.id, text)}>Criar nova Resenha</button>
+                    </form>
                 </div>
             </Modal>
         </div>
