@@ -13,17 +13,24 @@ export default function ReviewsComponentIndex(props) {
         return dia + '/' + mes + '/' + ano
     }
 
+    const secondPartUrl = TrataBook(resp.book_id)
+
+    console.log('resp in inside Reviews',resp)
+
     return (
-        <div className={`bg-mainColor dark:bg-mainDark h-32 w-96 mb-6 relative rounded-3xl`}>
-            <img alt="" layout="fill" className={`h-[180px] w-[120px] rounded-3xl absolute -top-16 left-4`} src={'http://localhost:3001/' + TrataBook(resp.book_id)}/>
-            <div className={`left-[150px] relative pt-2`}>{transformDate(resp)}</div>
-            <div className={`left-[150px] relative pt-1 w-56 text-sm`}>{limitText(resp.text, 120)}</div>
-            {props.index == false ? (
-                <div>
-                    <ReviewModalComponent value='Update'/>
-                    <ReviewModalComponent value='Delete'/>
-                </div>
-            ) : null}
+        <div>
+            <div className={`bg-mainColor dark:bg-mainDark h-32 w-96 mb-6 relative rounded-3xl`}>
+                <img alt="" layout="fill" className={`h-[180px] w-[120px] rounded-3xl absolute -top-16 left-4`} src={'http://localhost:3001/' + secondPartUrl}/>
+                <div className={`left-[150px] relative pt-2`}>{transformDate(resp)}</div>
+                <div className={`left-[150px] relative pt-1 w-56 text-sm`}>{limitText(resp.text, 120)}</div>
+            </div>
+                {props.index == false ? (
+                <div className="mb-5 flex justify-center">
+                    <ReviewModalComponent value='Read' infos={resp} url={secondPartUrl} />
+                        <ReviewModalComponent value='Update' infos={resp} url={secondPartUrl}/>
+                        <ReviewModalComponent value='Delete' infos={resp} url={secondPartUrl}/>
+                    </div>
+                ) : null}
         </div>
     )
 }
