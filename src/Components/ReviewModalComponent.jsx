@@ -74,22 +74,23 @@ export default function ReviewModalComponent(props) {
         color = 'bg-amber-200 dark:bg-anilDark'
         modalConteudo = (
             <div className={`mx-5 ${tema}`}>
-            {/* <div className={`w-full flex flex-row pb-5 dark:text-white`}>
-                <div className="w-full">ADICIONAR RESENHA</div>
-                <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
-            </div>
-            <div className='flex flex-row dark:text-white'>
-                <div>
-                    <img alt='' layout='fill' className={`h-48 rounded-3xl mb-4 mx-4`} src={'http://localhost:3001/' + infos.url} />
-                    <div className='w-[120px] mx-auto mb-2'>{infos.title}</div>
-                </div>
-                <div>
-                    <textarea onChange={()=>getText()} className='bg-mainColor dark:bg-mainDark p-4 w-80 h-80 outline-none rounded-2xl mr-4 ml-8'></textarea>
-                </div>
-            </div>
-            <form>
-                <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => ReviewCreate(idCooked, infos.id, text)}>Criar nova Resenha</button>
-            </form> */}
+                    <div className={`w-full flex flex-row pb-5 dark:text-white`}>
+                        <div className="w-full">RESENHA COMPLETA</div>
+                        <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
+                    </div>
+                    <div className='flex flex-row dark:text-white'>
+                        <div>
+                            <img alt='' layout='fill' className={`h-48 rounded-3xl mb-4 mx-4`} src={'http://localhost:3001/' + props.url} />
+                            <div className='w-[120px] mx-auto mb-2'>{props.infos.title}</div>
+                            {/* <div className='w-[120px] mx-auto'>{infos.writer}</div> */}
+                        </div>
+                        <div>
+                            <textarea defaultValue={props.infos.text} disabled className='bg-mainColor dark:bg-mainDark p-4 w-80 h-80 outline-none rounded-2xl mr-4 ml-8'></textarea>
+                        </div>
+                    </div>
+                    <form>
+                        <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`}>Fechar</button>
+                    </form>
             </div>
         )
     }
