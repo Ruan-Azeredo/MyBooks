@@ -6,7 +6,7 @@ const TrataWriter = (writer_id, writersglobal, y = 0, respss = null) => {
 
     const writers = writersglobal
 
-    if (writers[y].id == writer_id) {
+    if (writers[y]?.id == writer_id) {
         respss = writers[y].name
         return respss
     }
