@@ -2,13 +2,19 @@ import { useContext, useState } from "react";
 import DarkModeContext from "../Context/DarkModeContext";
 import customStyles from "../Package/Modal/customStyles";
 import Modal from "react-modal";
+import AuthContext from "../Context/AutenticaçãoContext";
+import ReviewUpdate from "../functions/ReviewUpdate";
+import ReviewDelete from "../functions/ReviewDelete";
 
 export default function ReviewModalComponent(props) {
 
-    const {tema} = useContext(DarkModeContext)
+    const { tema } = useContext(DarkModeContext)
+    const {idCooked} = useContext(AuthContext)
 
     const [modalIsOpen, setIsOpen] = useState(false);
     // const [data, setData] = useState({})
+    const [text, setText] = useState()
+
     const openModal = () => {
     setIsOpen(true);
     }
@@ -16,60 +22,76 @@ export default function ReviewModalComponent(props) {
     setIsOpen(false)
     }
     const customStylesM = customStyles(tema).customStyles
+
+    const getText = () => setText(event.target.value)
     
     let color = null
 
     let modalConteudo = null
 
+    console.log('props.infos.id: ', props.infos.id)
+
     if (props.value == 'Update') {
         color = 'bg-mainColor dark:bg-mainDark'
         modalConteudo = (
             <div className={`mx-5 ${tema}`}>
-
-            <div className={`w-full flex flex-row pb-5 dark:text-white`}>
-                <div className="w-full">ATUALIZAR RESENHA</div>
-                <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
-            </div>
-            <form>
-                <div className={`flex flex-row `}>
-                    <div className={`flex flex-col mr-5 dark:text-white`}>
-
-                        {/* <img src={'http://localhost:3001/' + props.infos.url} alt="" className={`h-48 w-32 rounded-2xl mx-auto`}/> */}
-                        
+                    <div className={`w-full flex flex-row pb-5 dark:text-white`}>
+                        <div className="w-full">ATUALIZAR RESENHA</div>
+                        <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
                     </div>
-
-                    <div className={`bg-mainColor dark:bg-mainDark text-white rounded-md p-2 pb-4`}>
-
-                        <input className={`file:text-amber-300 dark:file:text-blueDark file:bg-white file:border-none rounded-full file:px-2 file:font-semibold border-2 border-white m-2 pr-1`} />
-                        
-                        {/* <img alt="" src={cover == undefined ? 'http://localhost:3001/' + props.infos.url : cover} className={`h-48 w-32 rounded-2xl mx-auto`} /> */}
-
+                    <div className='flex flex-row dark:text-white'>
+                        <div>
+                            <img alt='' layout='fill' className={`h-48 rounded-3xl mb-4 mx-4`} src={'http://localhost:3001/' + props.url} />
+                            <div className='w-[120px] mx-auto mb-2'>{props.infos.title}</div>
+                            {/* <div className='w-[120px] mx-auto'>{infos.writer}</div> */}
+                        </div>
+                        <div>
+                            <textarea onChange={()=>getText()} defaultValue={props.infos.text} className='bg-mainColor dark:bg-mainDark p-4 w-80 h-80 outline-none rounded-2xl mr-4 ml-8'></textarea>
+                        </div>
                     </div>
+                    <form>
+                <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => ReviewUpdate(idCooked, props.infos.id, text)}>Atualizar Resenha</button>
+                    </form>
                 </div>
-                
-                <button className={`dark:text-white`} onClick={() => BookUpdate(idCooked, props.infos.writer_id, writer, props.infos.id, props.infos.title, title, file, props.infos.name, props.infos.url)}>Atualize um livro</button>
-            </form>
-            </div>
         )
     } else if (props.value == 'Delete') {
         color = 'bg-deleteColor dark:bg-deleteDark'
         modalConteudo =  (
             <div className={`mx-5 ${tema}`}>
             <div className={`w-full flex flex-row pb-5 dark:text-white`}>
-                <div className="w-full">DELETAR LIVRO</div>
+                <div className="w-full">DELETAR RESENHA</div>
                 <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
             </div>
             <form>
                 <div className={`mr-5`}>
-                        <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 dark:text-white`}>Tem certeza que deseja deletar este livro?</div>
+                        <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 dark:text-white`}>Tem certeza que deseja deletar esta Resenha?</div>
                 </div>
-                <button className={`dark:text-white`} onClick={() => BookDelete(props.infos.id)}>Apagar o livro</button>
+                <button className={`dark:text-white`} onClick={() => ReviewDelete(idCooked, props.infos.id)}>Apagar a Resenha</button>
             </form>
         </div>
         )
     } else {
         color = 'bg-amber-200 dark:bg-anilDark'
-        modalConteudo = (<div>Oiiiiiii</div>)
+        modalConteudo = (
+            <div className={`mx-5 ${tema}`}>
+            {/* <div className={`w-full flex flex-row pb-5 dark:text-white`}>
+                <div className="w-full">ADICIONAR RESENHA</div>
+                <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
+            </div>
+            <div className='flex flex-row dark:text-white'>
+                <div>
+                    <img alt='' layout='fill' className={`h-48 rounded-3xl mb-4 mx-4`} src={'http://localhost:3001/' + infos.url} />
+                    <div className='w-[120px] mx-auto mb-2'>{infos.title}</div>
+                </div>
+                <div>
+                    <textarea onChange={()=>getText()} className='bg-mainColor dark:bg-mainDark p-4 w-80 h-80 outline-none rounded-2xl mr-4 ml-8'></textarea>
+                </div>
+            </div>
+            <form>
+                <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => ReviewCreate(idCooked, infos.id, text)}>Criar nova Resenha</button>
+            </form> */}
+            </div>
+        )
     }
 
     return (
