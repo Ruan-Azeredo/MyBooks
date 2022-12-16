@@ -46,7 +46,18 @@ export default function WriterModalComponent(props) {
     } else {
         borderColor = 'border-deleteColor dark:border-deleteDark'
         modalConteudo = (
-            <div></div>
+            <div className={`mx-5 ${tema}`}>
+            <div className={`w-full flex flex-row pb-5 dark:text-white`}>
+                <div className="w-full">DELETAR AUTOR</div>
+                <button onClick={closeModal} className={`flex justify-end w-full`}>[x]</button>
+            </div>
+            <form>
+                <div className={`mr-5`}>
+                        <div type="text" className={`flex text-xl bg-mainColor dark:bg-mainDark w-80 rounded-xl p-5 mb-10 dark:text-white`}>Tem certeza que deseja deletar este Autor?</div>
+                </div>
+                <button className={`dark:text-white bg-mainColor dark:bg-mainDark px-4 py-2 rounded-full`} onClick={() => WriterDelete(props.idCooked, props.resp.id)}>Apagar o Autor</button>
+            </form>
+        </div>
         )
     }
 
