@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
+import EditWritersComponent from "../../components/EditWritersComponent"
 import HeaderComponent from "../../components/HeaderComponent"
 import ReviewsComponentIndex from "../../components/ReviewComponentIndex"
 import SidebarComponent from "../../components/SidebarComponent"
 import UserComponent from "../../components/UserComponent"
+import EditWritersContent from "../../content/EditWritersContent"
 import ReviewContentIndex from "../../content/ReviewContentIndex"
 import AuthContext from "../../Context/AutenticaçãoContext"
 import BooksContext from "../../Context/BooksContext"
@@ -12,7 +14,7 @@ import WritersContext from "../../Context/WritersContext"
 
 export default function InsideReviews() {
     const { idCooked } = useContext(AuthContext)
-    const { setWritersglobal } = useContext(WritersContext)
+    const { setWritersglobal, writersglobal } = useContext(WritersContext)
     const { booksglobal, setBooksglobal } = useContext(BooksContext)
 
     const {tema} = useContext(DarkModeContext)
@@ -52,6 +54,13 @@ export default function InsideReviews() {
                     </div>
                     ))}
                 </ReviewContentIndex>
+                <EditWritersContent>
+                    {writersglobal?.map(resp => (
+                        <div key={resp.id}>
+                            <EditWritersComponent resp={resp} />
+                        </div>
+                    ))}
+                </EditWritersContent>
             </div>
         </div>
     )
