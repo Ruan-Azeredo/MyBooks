@@ -1,3 +1,4 @@
+import { reload } from "firebase/auth";
 import { useContext, useState } from "react";
 import Modal from "react-modal";
 import AuthContext from "../Context/AutenticaçãoContext";
@@ -6,6 +7,7 @@ import DataContext from "../Context/DataContext";
 import BookCreate from "../functions/BookCreate";
 import WriterCreate from "../functions/WriterCreate";
 import customStyles from '../Package/Modal/customStyles';
+import Cookies from "js-cookie";
 
 const axios = require('axios')
 
@@ -41,6 +43,14 @@ export default function SidebarComponent() {
         setWriterId(event.target.value)
     }
     const getAutor = () => setAutor(event.target.value)
+
+    const logout = () => {
+        Cookies.remove('MyBook-idUser')
+        Cookies.remove('MyBook-photoUser')
+        Cookies.remove('MyBook-nameUser')
+
+        document.location.reload(true);
+    }
     
     return (
         <div className={`w-full flex col-start-1 col-end-2 fixed left-8 top-[310px]`}>
@@ -55,7 +65,7 @@ export default function SidebarComponent() {
                 <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={openModal} value='Autor'>+ Autor</button>
                 <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={openModal} value='Livro'>+ Livro</button>
                 <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark">Resenhas & Autores</button>
-                <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark">Logout</button>
+                <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={logout}>Logout</button>
             </div>
 
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStylesM}>
