@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const WriterDelete = () => {
+const WriterDelete = (idCooked, id) => {
     axios.delete(`http://localhost:3001/users/writers/${idCooked}/${id}`)
 }
 
