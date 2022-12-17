@@ -8,6 +8,7 @@ import BookCreate from "../functions/BookCreate";
 import WriterCreate from "../functions/WriterCreate";
 import customStyles from '../Package/Modal/customStyles';
 import Cookies from "js-cookie";
+import Router from "next/router";
 
 const axios = require('axios')
 
@@ -51,6 +52,10 @@ export default function SidebarComponent() {
 
         document.location.reload(true);
     }
+
+    const goInsideReviews = () => {
+        Router.push('/Inside/InsideReviews')
+    }
     
     return (
         <div className={`w-full flex col-start-1 col-end-2 fixed left-8 top-[310px]`}>
@@ -64,7 +69,7 @@ export default function SidebarComponent() {
             `}>
                 <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={openModal} value='Autor'>+ Autor</button>
                 <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={openModal} value='Livro'>+ Livro</button>
-                <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark">Resenhas & Autores</button>
+                <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={goInsideReviews}>Resenhas & Autores</button>
                 <button className="w-16 hover:text-yellow-400 dark:hover:text-blueDark" onClick={logout}>Logout</button>
             </div>
 
