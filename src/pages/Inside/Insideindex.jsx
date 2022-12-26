@@ -58,7 +58,7 @@ export default function Insideindex() {
     return (
         <div className={`${tema}`}>
 
-            <div className={`grid grid-cols-6 bg-white dark:bg-[#464646] text-[#464646] dark:text-white`}>
+            <div className={`grid grid-cols-6 min-h-screen bg-white dark:bg-[#464646] text-[#464646] dark:text-white`}>
                 <HeaderComponent/>
                 <UserComponent />
                 <ReviewContentIndex index={true}>
